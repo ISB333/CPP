@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/20 09:07:43 by adesille          #+#    #+#             */
-/*   Updated: 2025/01/25 13:50:44 by adesille         ###   ########.fr       */
+/*   Created: 2025/01/25 14:01:01 by adesille          #+#    #+#             */
+/*   Updated: 2025/01/25 14:30:31 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_HPP
-# define ZOMBIE_HPP
+#pragma once
 
-# include <iostream>
-
-class Zombie {
+class	Canon {
 	public:
-		void		announce( void );
-		Zombie(std::string zombieName);
-		~Zombie();
+		Canon();
+		Canon(const Canon& value);
+		Canon& operator=(const Canon& value);
+		~Canon();
+		int getRawBits() const;
+		void setRawBits(int const raw);
 
 	private:
-		std::string	name;
+		int 				_rawValue;
+		const static int	_nFixed;
 };
-
-Zombie*		newZombie( std::string name );
-void		randomChump( std::string name );
-
-#endif

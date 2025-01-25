@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:09:21 by adesille          #+#    #+#             */
-/*   Updated: 2025/01/23 13:02:03 by adesille         ###   ########.fr       */
+/*   Updated: 2025/01/25 13:49:06 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,24 @@ void Harl::complain(std::string level) {
 }
 
 Harl::Harl() {
-	actions["debug"] = &Harl::debug;
-	actions["info"] = &Harl::info;
-	actions["warning"] = &Harl::warning;
-	actions["error"] = &Harl::error; 
+	actions["DEBUG"] = &Harl::debug;
+	actions["INFO"] = &Harl::info;
+	actions["WARNING"] = &Harl::warning;
+	actions["ERROR"] = &Harl::error;
 }
 
-void	Harl::debug( void ) {
+void Harl::debug(void) {
 	std::cout << DEBUG << std::endl;
 }
 
-void	Harl::info( void ) {
+void Harl::info(void) {
 	std::cout << INFO << std::endl;
 }
 
-void	Harl::warning( void ) {
+void Harl::warning(void) {
 	std::cout << WARNING << std::endl;
 }
 
-void	Harl::error( void ) {
+void Harl::error(void) {
 	std::cout << ERROR << std::endl;
 }

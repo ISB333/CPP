@@ -6,19 +6,17 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 10:51:37 by adesille          #+#    #+#             */
-/*   Updated: 2025/01/23 13:02:27 by adesille         ###   ########.fr       */
+/*   Updated: 2025/01/25 11:27:40 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
 
-int main(void)
-{
-	Harl	harl;
+int main(int argc, char *argv[]) {
+	Harl harl;
 
-	harl.complain("debug");
-	harl.complain("info");
-	harl.complain("warning");
-	harl.complain("error");
-	harl.complain("WTF");
+	if(argc == 2)
+		return (harl.complain(argv[1]), 0);
+	std::cout << "Wrong number of arguments" << std::endl;
+	return (1);
 }

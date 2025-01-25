@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 09:07:43 by adesille          #+#    #+#             */
-/*   Updated: 2025/01/23 12:24:57 by adesille         ###   ########.fr       */
+/*   Updated: 2025/01/25 13:50:31 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,14 @@
 # include <iostream>
 
 class Zombie {
+	public:
+		void	announce( void );
+		void	setName(std::string zombieName);
+		Zombie();
+		~Zombie();
 
-public:
-	void	announce( void );
-	void	setName(std::string zombieName);
-    Zombie();
-    ~Zombie();
-
-private:
-	std::string	name;
-
+	private:
+		std::string	name;
 };
 
 Zombie*		zombieHorde( int N, std::string name );

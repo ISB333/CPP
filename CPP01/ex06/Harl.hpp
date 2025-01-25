@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 10:52:31 by adesille          #+#    #+#             */
-/*   Updated: 2025/01/23 13:02:06 by adesille         ###   ########.fr       */
+/*   Updated: 2025/01/25 13:51:07 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,18 @@
 # define ERROR "This is unacceptable! I want to speak to the manager now."
 
 class	Harl {
+	public:
+		void	complain( std::string level );
+		Harl();
 
-public:
-	void	complain( std::string level );
-	Harl();
+	private:
+		void	debug( void );
+		void	info( void );
+		void	warning( void );
+		void	error( void );
 
-private:
-	void	debug( void );
-	void	info( void );
-	void	warning( void );
-	void	error( void );
-
-	typedef void (Harl::*Action)();
-	std::map<std::string, Action> actions;
-
+		typedef void (Harl::*Action)();
+		std::map<std::string, Action> actions;
 };
 
 #endif
