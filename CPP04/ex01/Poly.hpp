@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:55:00 by adesille          #+#    #+#             */
-/*   Updated: 2025/01/28 13:56:13 by adesille         ###   ########.fr       */
+/*   Updated: 2025/01/29 09:29:16 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -30,25 +30,37 @@
 class	Animal {
 	public:
 		Animal();
-		Animal(const Animal& src);
 		Animal(std::string type);
+		Animal(const Animal& src);
+		Animal&			operator=(const Animal& rhs);
 		virtual ~Animal();
 		
-		Animal&			operator=(const Animal& rhs);
 		std::string		getType() const;
 		virtual void	makeSound() const;
+		virtual	void	newBrain();
 
 	protected:
 		std::string _type;	
+};
+
+class	Brain {
+	public:
+		Brain();
+		Brain(const Brain& src);
+		Brain& 			operator=(const Brain& rhs);
+		virtual ~Brain();
+
+	private:
+		std::string _ideas[100];
 };
 
 class	Dog : public Animal {
 	public:
 		Dog();
 		Dog(const Dog& src);
+		Dog& 			operator=(const Dog& rhs);
 		virtual ~Dog(); // Assure destruction of derived class and potential future inheritance of this Class
 		
-		Dog& 			operator=(const Dog& rhs);
 		virtual void	makeSound() const; // To call this derived Class Functions from the base Class
 
 	private:
@@ -59,22 +71,11 @@ class	Cat : public Animal {
 	public:
 		Cat();
 		Cat(const Cat& src);
+		Cat& 			operator=(const Cat& rhs);
 		virtual ~Cat();
 		
-		Cat& 			operator=(const Cat& rhs);
 		virtual void	makeSound() const;
 
 	private:
 		Brain* _brain;
-};
-
-class	Brain {
-	public:
-		Brain();
-		Brain(const Brain& src);
-		virtual ~Brain();
-		Brain& 			operator=(const Brain& rhs);
-
-	private:
-		std::string ideas[100];
 };

@@ -12,21 +12,27 @@
 
 #include "Poly.hpp"
 
-Cat::Cat() : Animal("Cat") {
+Cat::Cat() : Animal("Cat"), _brain(new Brain()) {
 	std::cout << "Default Cat constructor called"  << std::endl;
 }
 
 Cat::Cat(const Cat& src) : Animal(src) {
+	_brain = new Brain(*src._brain);
 	std::cout << "Copy Cat constructor called" << std::endl;
 }
 
 Cat&	Cat::operator=(const Cat& rhs) {
-	if (this != &rhs)
+	if (this != &rhs) {
 		Animal::operator=(rhs);
+		delete _brain;
+		_brain = new Brain(*rhs._brain);
+	}
+	std::cout << "Cat assignement operator called" << std::endl;
 	return (*this);
 }
 
 Cat::~Cat() {
+	delete _brain;
 	std::cout << "Cat destructor called for " << _type << std::endl;
 }
 

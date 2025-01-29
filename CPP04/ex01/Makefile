@@ -6,7 +6,7 @@
 #    By: adesille <adesille@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 11:33:14 by adesille          #+#    #+#              #
-#    Updated: 2025/01/28 08:30:03 by adesille         ###   ########.fr        #
+#    Updated: 2025/01/29 09:28:59 by adesille         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -25,7 +25,7 @@ YELLOW = \033[0;33m
 
 ######################## SOURCES ########################
 
-SRCS = ./main.cpp ./Animal.cpp ./Dog.cpp ./Cat.cpp
+SRCS = ./main.cpp ./Animal.cpp ./Dog.cpp ./Cat.cpp ./Brain.cpp
 OBJD_DIR = .obj
 OBJS = $(SRCS:%.cpp=$(OBJD_DIR)/%.o)
 
