@@ -6,13 +6,13 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 10:46:07 by adesille          #+#    #+#             */
-/*   Updated: 2025/01/31 12:23:39 by adesille         ###   ########.fr       */
+/*   Updated: 2025/01/31 12:33:26 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #pragma once
 
-#include <iostream>
+# include <iostream>
 
 # define BLACK	"\033[30m"
 # define RED		"\033[31m"
@@ -35,9 +35,9 @@ class	ClapTrap {
 		ClapTrap(std::string name);
 		ClapTrap(const ClapTrap &other);
 		ClapTrap& operator=(const ClapTrap &other);
-		~ClapTrap();
+		virtual ~ClapTrap();
 
-	private:
+	protected:
 		std::string	_Name;
 		int 		_hitPoints;
 		int 		_energyPoints;

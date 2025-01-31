@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 10:46:07 by adesille          #+#    #+#             */
-/*   Updated: 2025/01/27 12:21:52 by adesille         ###   ########.fr       */
+/*   Updated: 2025/01/27 14:02:58 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -22,6 +22,7 @@
 # define MAGENTA	"\033[35m"
 # define CYAN	"\033[36m"
 # define WHITE	"\033[37m"
+# define HYEL "\e[0;93m"
 # define RESET	"\033[0m"
 
 class	ClapTrap {

@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   Harl.cpp                                           :+:      :+:    :+:   */
@@ -6,26 +6,31 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:09:21 by adesille          #+#    #+#             */
-/*   Updated: 2025/01/25 13:49:06 by adesille         ###   ########.fr       */
+/*   Updated: 2025/01/31 11:56:10 by adesille         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "Harl.hpp"
 
 void Harl::complain(std::string level) {
-	std::map<std::string, Action>::iterator it = actions.find(level);
-	if (it != actions.end())
-		(this->*(it->second))();
-	else
-		std::cerr << "Unknown complaint level: " << level << std::endl;
+	void	(Harl::*actions[4])(void) = {
+		&Harl::debug,
+		&Harl::info,
+		&Harl::warning,
+		&Harl::error
+	};
+	std::string	levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+
+	for (int i = 0; i < 4; i++) {
+		if (level == levels[i]) {
+			(this->*actions[i])();
+			return;
+		}
+	}
+	std::cerr << "Unknown complaint level: " << level << std::endl;
 }
 
-Harl::Harl() {
-	actions["DEBUG"] = &Harl::debug;
-	actions["INFO"] = &Harl::info;
-	actions["WARNING"] = &Harl::warning;
-	actions["ERROR"] = &Harl::error;
-}
+Harl::Harl() {}
 
 void Harl::debug(void) {
 	std::cout << DEBUG << std::endl;

@@ -6,7 +6,7 @@
 #    By: adesille <adesille@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 11:33:14 by adesille          #+#    #+#              #
-#    Updated: 2025/01/27 11:19:15 by adesille         ###   ########.fr        #
+#    Updated: 2025/01/27 13:19:54 by adesille         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -25,7 +25,7 @@ YELLOW = \033[0;33m
 
 ######################## SOURCES ########################
 
-SRCS = ./main.cpp ./ClapTrap.cpp ./ScavTrap.cpp
+SRCS = ./main.cpp ./ClapTrap.cpp ./ScavTrap.cpp ./FragTrap.cpp
 OBJD_DIR = .obj
 OBJS = $(SRCS:%.cpp=$(OBJD_DIR)/%.o)
 

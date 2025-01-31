@@ -1,27 +1,26 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Weapon.cpp                                         :+:      :+:    :+:   */
+/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/20 12:42:38 by adesille          #+#    #+#             */
-/*   Updated: 2025/01/28 09:17:58 by adesille         ###   ########.fr       */
+/*   Created: 2025/01/31 06:38:33 by adesille          #+#    #+#             */
+/*   Updated: 2025/01/31 06:48:06 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "Weapon.hpp"
+#pragma once
+# include <iostream>
+# include <cstring>
 
-const std::string	&Weapon::getType() const {
-	return (type);
-}
+class Bureaucrat {
+	private:
+		// Members
 
-void Weapon::setType(std::string newType) {
-    type = newType;
-}
-
-Weapon::Weapon(std::string typeName) : type(typeName){};
-
-Weapon::~Weapon(){
-	std::cout << "Weapon " << type << " has been destroyed!" << std::endl;
-}
+	public:
+		Bureaucrat();
+		Bureaucrat(const Bureaucrat &other);
+		Bureaucrat& operator=(const Bureaucrat &other);
+		~Bureaucrat();
+};

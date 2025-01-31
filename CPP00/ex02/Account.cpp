@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   Account.cpp                                        :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 09:31:35 by adesille          #+#    #+#             */
-/*   Updated: 2025/01/16 13:02:05 by adesille         ###   ########.fr       */
+/*   Updated: 2025/01/31 07:49:19 by adesille         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include <vector>
 #include <algorithm>
@@ -26,14 +26,17 @@ int Account::_totalNbWithdrawals = 0;
 
 Account::Account(int initial_deposit) : _accountIndex(_nbAccounts), _amount(initial_deposit), _nbDeposits(0), _nbWithdrawals(0)
 {
+	_displayTimestamp();
 	_nbAccounts++;
 	_totalAmount += initial_deposit;
+	std::cout << "index:" << _accountIndex << ";amount:" << _amount << "created" << std::endl;
 }
 
 Account::~Account()
 {
 	_nbAccounts--;
 	_totalAmount -= _amount;
+	std::cout << "index:" << _accountIndex << ";amount:" << _amount << ";closed" << std::endl;
 }
 
 int	Account::getNbAccounts( void )
@@ -118,4 +121,3 @@ void Account::_displayTimestamp( void )
 			  << std::setw(2) << std::setfill('0') << localTime->tm_sec
 			  << "] ";
 }
-

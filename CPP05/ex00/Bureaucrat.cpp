@@ -1,27 +1,32 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Weapon.cpp                                         :+:      :+:    :+:   */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/20 12:42:38 by adesille          #+#    #+#             */
-/*   Updated: 2025/01/28 09:17:58 by adesille         ###   ########.fr       */
+/*   Created: 2025/01/31 06:48:19 by adesille          #+#    #+#             */
+/*   Updated: 2025/01/31 06:51:33 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "Weapon.hpp"
+#include "Bureaucrat.hpp"
 
-const std::string	&Weapon::getType() const {
-	return (type);
+Bureaucrat::Bureaucrat() {
+	// Default constructor implementation
 }
 
-void Weapon::setType(std::string newType) {
-    type = newType;
+Bureaucrat::Bureaucrat(const Bureaucrat &other) {
+	*this = other;
 }
 
-Weapon::Weapon(std::string typeName) : type(typeName){};
+Bureaucrat& Bureaucrat::operator=(const Bureaucrat &other) {
+	if (this != &other) {
+		// Copy members here
+	}
+	return *this;
+}
 
-Weapon::~Weapon(){
-	std::cout << "Weapon " << type << " has been destroyed!" << std::endl;
+Bureaucrat::~Bureaucrat() {
+	// Destructor implementation
 }

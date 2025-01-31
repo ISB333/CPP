@@ -1,27 +1,26 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Weapon.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/20 12:42:38 by adesille          #+#    #+#             */
-/*   Updated: 2025/01/28 09:17:58 by adesille         ###   ########.fr       */
+/*   Created: 2025/01/26 08:52:14 by adesille          #+#    #+#             */
+/*   Updated: 2025/01/27 09:46:02 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "Weapon.hpp"
+#include "Fixed.hpp"
 
-const std::string	&Weapon::getType() const {
-	return (type);
-}
-
-void Weapon::setType(std::string newType) {
-    type = newType;
-}
-
-Weapon::Weapon(std::string typeName) : type(typeName){};
-
-Weapon::~Weapon(){
-	std::cout << "Weapon " << type << " has been destroyed!" << std::endl;
+int main( void ) {
+	Fixed a;
+	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+	std::cout << a << std::endl;
+	std::cout << ++a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << a++ << std::endl;
+	std::cout << a << std::endl;
+	std::cout << b << std::endl;
+	std::cout << Fixed::max( a, b ) << std::endl;
+	return (0);
 }

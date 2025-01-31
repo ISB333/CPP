@@ -1,27 +1,27 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Weapon.cpp                                         :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/20 12:42:38 by adesille          #+#    #+#             */
-/*   Updated: 2025/01/28 09:17:58 by adesille         ###   ########.fr       */
+/*   Created: 2025/01/27 10:56:42 by adesille          #+#    #+#             */
+/*   Updated: 2025/01/31 12:33:46 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "Weapon.hpp"
+#pragma once
 
-const std::string	&Weapon::getType() const {
-	return (type);
-}
+# include "ClapTrap.hpp"
 
-void Weapon::setType(std::string newType) {
-    type = newType;
-}
+class ScavTrap : public ClapTrap {
+	public:
+		ScavTrap();
+		ScavTrap(std::string name);
+		ScavTrap(const ScavTrap &other);
+		ScavTrap& operator=(const ScavTrap &other);
+		~ScavTrap();
 
-Weapon::Weapon(std::string typeName) : type(typeName){};
-
-Weapon::~Weapon(){
-	std::cout << "Weapon " << type << " has been destroyed!" << std::endl;
-}
+		void	guardGate();
+	
+};

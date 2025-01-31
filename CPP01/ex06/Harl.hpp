@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   Harl.hpp                                           :+:      :+:    :+:   */
@@ -6,16 +6,15 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 10:52:31 by adesille          #+#    #+#             */
-/*   Updated: 2025/01/25 13:51:07 by adesille         ###   ########.fr       */
+/*   Updated: 2025/01/31 11:58:37 by adesille         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef HARL_HPP
 # define HARL_HPP
 
 # include <iostream>
 # include <cstring>
-# include <map>
 
 # define DEBUG "I love having extra bacon for my 7XL-double-cheese-triple-pickle-special-ketchup burger. I really do!"
 # define INFO "I cannot believe adding extra bacon costs more money. You didn’t put enough bacon in my burger! If you did, I wouldn’t be asking for more!"
@@ -34,7 +33,6 @@ class	Harl {
 		void	error( void );
 
 		typedef void (Harl::*Action)();
-		std::map<std::string, Action> actions;
 };
 
 #endif

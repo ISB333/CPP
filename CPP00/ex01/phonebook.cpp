@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   phonebook.cpp                                      :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 11:34:51 by adesille          #+#    #+#             */
-/*   Updated: 2025/01/16 13:08:04 by adesille         ###   ########.fr       */
+/*   Updated: 2025/01/31 07:31:50 by adesille         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "phonebook.hpp"
 
@@ -18,7 +18,7 @@ void	find_contact(PhoneBook *p)
 	int			i;
 
 	print_contact(*p);
-	index = prompt("Enter the index of the contact you want to display: ", NO_ERROR_CHECK);
+	index = prompt("Enter the index of the contact you want to display: ", NO_ERROR_CHECK, CMD);
 	if (!index[1] && std::isdigit(index[0]))
 	{
 		i = stoi(index) - 1;
@@ -34,11 +34,11 @@ void	add_contact(PhoneBook *p)
 {
 	if ((*p).i == 7)
 		(*p).i = -1;
-	(*p).c[++(*p).i].first_name = prompt("First name: ", ERROR_CHECK);
-	(*p).c[(*p).i].last_name = prompt("Last name: ", ERROR_CHECK);
-	(*p).c[(*p).i].nickname = prompt("Nickname: ", ERROR_CHECK);
-	(*p).c[(*p).i].phone_nbr = prompt("Phone number: ", ERROR_CHECK);
-	(*p).c[(*p).i].darkest_secret = prompt("Darkest secret: ", ERROR_CHECK);
+	(*p).c[++(*p).i].first_name = prompt("First name: ", ERROR_CHECK, CMD);
+	(*p).c[(*p).i].last_name = prompt("Last name: ", ERROR_CHECK, CMD);
+	(*p).c[(*p).i].nickname = prompt("Nickname: ", ERROR_CHECK, CMD);
+	(*p).c[(*p).i].phone_nbr = prompt("Phone number: ", ERROR_CHECK, CMD);
+	(*p).c[(*p).i].darkest_secret = prompt("Darkest secret: ", ERROR_CHECK, SECRET);
 }
 
 int main()
@@ -47,7 +47,7 @@ int main()
 	PhoneBook 	p;
 
 	p.i = -1;
-	cmd = prompt("Enter your command:", NO_ERROR_CHECK);
+	cmd = prompt("Enter your command:", NO_ERROR_CHECK, CMD);
 	while (cmd != "EXIT" && !cmd.empty())
 	{
 		if (cmd == "ADD")
@@ -56,6 +56,6 @@ int main()
 			find_contact(&p);
 		else if (cmd == "EXIT")
 			exit(EXIT_SUCCESS);
-		cmd = prompt("Enter your command: ", NO_ERROR_CHECK);
+		cmd = prompt("Enter your command: ", NO_ERROR_CHECK, CMD);
 	}
 }

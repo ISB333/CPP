@@ -1,0 +1,19 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "build",
+			"command": "make",
+			"args": [
+				"x"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}/CPP02/ex01"
+			},
+			"presentation": {
+				"reveal": "silent"
+			}
+		}
+	]
+}
