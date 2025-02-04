@@ -1,12 +1,12 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Poly.hpp                                           :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:55:00 by adesille          #+#    #+#             */
-/*   Updated: 2025/01/29 09:51:48 by adesille         ###   ########.fr       */
+/*   Updated: 2025/02/04 11:52:57 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -41,41 +41,4 @@ class	Animal {
 
 	protected:
 		std::string _type;	
-};
-
-class	Brain {
-	public:
-		Brain();
-		Brain(const Brain& src);
-		Brain& 			operator=(const Brain& rhs);
-		virtual ~Brain();
-
-	private:
-		std::string _ideas[100];
-};
-
-class	Dog : public Animal {
-	public:
-		Dog();
-		Dog(const Dog& src);
-		Dog& 			operator=(const Dog& rhs);
-		virtual ~Dog(); // Assure destruction of derived class and potential future inheritance of this Class
-		
-		virtual void	makeSound() const; // To call this derived Class Functions from the base Class
-
-	private:
-		Brain* _brain;
-};
-
-class	Cat : public Animal {
-	public:
-		Cat();
-		Cat(const Cat& src);
-		Cat& 			operator=(const Cat& rhs);
-		virtual ~Cat();
-		
-		virtual void	makeSound() const;
-
-	private:
-		Brain* _brain;
 };

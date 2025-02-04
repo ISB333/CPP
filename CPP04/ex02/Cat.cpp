@@ -10,7 +10,7 @@
 /*                                                                            */
 /******************************************************************************/
 
-#include "Poly.hpp"
+#include "Cat.hpp"
 
 Cat::Cat() : Animal("Cat"), _brain(new Brain()) {
 	std::cout << "Default Cat constructor called"  << std::endl;

@@ -6,11 +6,11 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 13:53:55 by adesille          #+#    #+#             */
-/*   Updated: 2025/01/29 09:43:01 by adesille         ###   ########.fr       */
+/*   Updated: 2025/02/04 11:54:54 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "Poly.hpp"
+#include "Brain.hpp"
 
 Brain::Brain() {
 	std::cout << "Brain default constructor called" << std::endl;
