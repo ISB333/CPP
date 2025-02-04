@@ -6,11 +6,11 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:01:43 by adesille          #+#    #+#             */
-/*   Updated: 2025/01/28 12:49:09 by adesille         ###   ########.fr       */
+/*   Updated: 2025/02/04 11:38:22 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "Poly.hpp"
+#include "Animal.hpp"
 
 Animal&			Animal::operator=(const Animal& rhs) {
 	if (this != &rhs)

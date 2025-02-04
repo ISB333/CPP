@@ -6,11 +6,11 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:01:43 by adesille          #+#    #+#             */
-/*   Updated: 2025/01/29 09:19:18 by adesille         ###   ########.fr       */
+/*   Updated: 2025/02/04 11:50:33 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "Poly.hpp"
+#include "Animal.hpp"
 
 Animal::Animal() : _type("Animal") {
 	std::cout << "Animal Default constructor called" << std::endl;

@@ -6,11 +6,11 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 08:30:32 by adesille          #+#    #+#             */
-/*   Updated: 2025/01/28 10:58:07 by adesille         ###   ########.fr       */
+/*   Updated: 2025/02/04 11:38:21 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "Poly.hpp"
+#include "Dog.hpp"
 
 Dog::Dog() : Animal("Dog") {
 	std::cout << "Default Dog constructor called"  << std::endl;

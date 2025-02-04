@@ -1,32 +1,29 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/31 06:48:19 by adesille          #+#    #+#             */
-/*   Updated: 2025/02/04 09:51:18 by adesille         ###   ########.fr       */
+/*   Created: 2025/02/04 11:46:49 by adesille          #+#    #+#             */
+/*   Updated: 2025/02/04 11:49:06 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
- #include "Bureaucrat.hpp"
- 
- Bureaucrat::Bureaucrat() {
-	 // Default constructor implementation
- }
- 
- Bureaucrat::Bureaucrat(const Bureaucrat &other) {
-	 *this = other;
- }
- 
- Bureaucrat& Bureaucrat::operator=(const Bureaucrat &other) {
-	 if (this != &other) {
-		 // Copy members here
-	 }
-	 return *this;
- }
- 
- Bureaucrat::~Bureaucrat() {
-	 // Destructor implementation
- }
+#pragma once
+
+# include "Animal.hpp"
+# include "Brain.hpp"
+
+class	Cat : public Animal {
+	public:
+		Cat();
+		Cat(const Cat& src);
+		Cat& 			operator=(const Cat& rhs);
+		virtual ~Cat();
+		
+		virtual void	makeSound() const;
+
+	private:
+		Brain* _brain;
+};

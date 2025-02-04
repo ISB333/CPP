@@ -6,11 +6,13 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:52:22 by adesille          #+#    #+#             */
-/*   Updated: 2025/01/28 10:34:38 by adesille         ###   ########.fr       */
+/*   Updated: 2025/02/04 11:40:05 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "Poly.hpp"
+#include "Animal.hpp"
+#include "Dog.hpp"
+#include "Cat.hpp"
 
 int main()
 {
