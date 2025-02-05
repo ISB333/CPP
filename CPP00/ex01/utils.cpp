@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 10:52:55 by isb               #+#    #+#             */
-/*   Updated: 2025/01/31 07:42:47 by adesille         ###   ########.fr       */
+/*   Updated: 2025/02/05 13:49:02 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -30,18 +30,21 @@ std::string	prompt(std::string prompt, bool error_check, int type)
 		{
 			int start = cmd.find_first_not_of(" \t\n\r\f\v");
 			int end = cmd.find_last_not_of(" \t\n\r\f\v") + 1;
-			cmd = cmd.substr(start, end);
-			if (type != SECRET)
+			if (end)
 			{
-				std::string formatted;
-				int len = cmd.length();
-				for (int i = 0; i < len; i++)
-					if (cmd[i] != '\t' || cmd[i] != '\n' || cmd[i] != '\r'
-						|| cmd[i] != '\f' || cmd[i] != '\v')
-						formatted += cmd[i];
-				return (formatted);
+				cmd = cmd.substr(start, end);
+				if (type != SECRET)
+				{
+					std::string formatted;
+					int len = cmd.length();
+					for (int i = 0; i < len; i++)
+						if (cmd[i] != '\t' || cmd[i] != '\n' || cmd[i] != '\r'
+							|| cmd[i] != '\f' || cmd[i] != '\v')
+							formatted += cmd[i];
+					return (formatted);
+				}
+				return (cmd);
 			}
-			return (cmd);
 		}
 	}
 	return (exit(EXIT_SUCCESS), "");
