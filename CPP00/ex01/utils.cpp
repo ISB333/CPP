@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   utils.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isb <isb@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 10:52:55 by isb               #+#    #+#             */
-/*   Updated: 2025/02/12 10:39:51 by isb              ###   ########.fr       */
+/*   Updated: 2025/02/28 07:24:37 by adesille         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "utils.hpp"
 
@@ -47,7 +47,7 @@ std::string	prompt(std::string prompt, bool error_check, int type)
 			}
 		}
 	}
-	return (exit(EXIT_SUCCESS), "");
+    return (exit(EXIT_SUCCESS), "");
 }
 
 int stoi(std::string& str)
@@ -96,12 +96,12 @@ void	print_contact(PhoneBook p)
 	
 	while (++i < 8)
 	{
-		if (p.c[i].first_name.empty())
-			continue; ;
+		if (p.c[i].isEmpty())
+			continue;
 		str += join_contact(to_string(i + 1));
-		str += join_contact(p.c[i].first_name);
-		str += join_contact(p.c[i].last_name);
-		str += join_contact(p.c[i].nickname);
+		str += join_contact(p.c[i].getContact(FIRST_NAME));
+		str += join_contact(p.c[i].getContact(LAST_NAME));
+		str += join_contact(p.c[i].getContact(NICKNAME));
 		str += '|';
 		std::cout << str << std::endl;
 		str.clear();

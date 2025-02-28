@@ -1,16 +1,18 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   phonebook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isb <isb@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 11:34:51 by adesille          #+#    #+#             */
-/*   Updated: 2025/02/12 10:39:51 by isb              ###   ########.fr       */
+/*   Updated: 2025/02/28 12:49:40 by adesille         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "utils.hpp"
+
+//TODO: ADD Fake Segfault
 
 void	find_contact(PhoneBook *p)
 {
@@ -22,9 +24,16 @@ void	find_contact(PhoneBook *p)
 	if (!index[1] && std::isdigit(index[0]))
 	{
 		i = stoi(index) - 1;
-		std::cout << (*p).c[i].first_name << "\n" << (*p).c[i].last_name << "\n"
-			<< (*p).c[i].nickname << "\n" << (*p).c[i].phone_nbr << "\n"
-				<< (*p).c[i].darkest_secret << std::endl;
+		if (i >= 0 && i < 8 && !p->c[i].isEmpty())
+		{
+			std::cout << p->c[i].getContact(FIRST_NAME) << "\n"
+					<< p->c[i].getContact(LAST_NAME) << "\n"
+					<< p->c[i].getContact(NICKNAME) << "\n"
+					<< p->c[i].getContact(PHONE_NBR) << "\n"
+					<< p->c[i].getContact(SECRET) << std::endl;
+		}
+		else
+			std::cout << "Invalid index" << std::endl;
 	}
 	else
 		std::cout << "Index is not valid" << std::endl;
@@ -34,11 +43,12 @@ void	add_contact(PhoneBook *p)
 {
 	if ((*p).i == 7)
 		(*p).i = -1;
-	(*p).c[++(*p).i].first_name = prompt("First name: ", ERROR_CHECK, CMD);
-	(*p).c[(*p).i].last_name = prompt("Last name: ", ERROR_CHECK, CMD);
-	(*p).c[(*p).i].nickname = prompt("Nickname: ", ERROR_CHECK, CMD);
-	(*p).c[(*p).i].phone_nbr = prompt("Phone number: ", ERROR_CHECK, CMD);
-	(*p).c[(*p).i].darkest_secret = prompt("Darkest secret: ", ERROR_CHECK, SECRET);
+	(*p).i++;
+	(*p).c[(*p).i].setContact(FIRST_NAME, prompt("First name: ", ERROR_CHECK, CMD));
+	(*p).c[(*p).i].setContact(LAST_NAME, prompt("Last name: ", ERROR_CHECK, CMD));
+	(*p).c[(*p).i].setContact(NICKNAME, prompt("Nickname: ", ERROR_CHECK, CMD));
+	(*p).c[(*p).i].setContact(PHONE_NBR, prompt("Phone number: ", ERROR_CHECK, CMD));
+	(*p).c[(*p).i].setContact(SECRET, prompt("Darkest secret: ", ERROR_CHECK, SECRET));
 }
 
 int main()

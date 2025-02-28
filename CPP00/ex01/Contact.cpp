@@ -1,29 +1,32 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Contact.hpp                                        :+:      :+:    :+:   */
+/*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/31 10:50:07 by isb               #+#    #+#             */
-/*   Updated: 2025/02/28 07:22:17 by adesille         ###   ########.fr       */
+/*   Created: 2025/02/28 07:04:59 by adesille          #+#    #+#             */
+/*   Updated: 2025/02/28 07:27:12 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#pragma once
+#include "utils.hpp"
 
-# include "utils.hpp"
+Contact::Contact() {};
 
-class Contact
-{
-	private:
-		std::string	_data[5];
+Contact::~Contact() {};
 
-	public:
-		Contact();
-		~Contact();
+void Contact::setContact(int field, std::string value) {
+	if (field >= 0 && field < 5)
+		this->_data[field] = value;
+}
 
-		void		setContact(int field, std::string value);
-		std::string	getContact(int field) const;
-		bool		isEmpty(void) const;
-};
+std::string Contact::getContact(int field) const {
+	if (field >= 0 && field < 5)
+		return (this->_data[field]);
+	return ("");
+}
+
+bool Contact::isEmpty(void) const {
+	return (this->_data[FIRST_NAME].empty());
+}
