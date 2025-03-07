@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:48:46 by adesille          #+#    #+#             */
-/*   Updated: 2025/02/05 14:18:23 by adesille         ###   ########.fr       */
+/*   Updated: 2025/03/07 09:27:52 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,11 +14,13 @@
 #include <fstream>
 #include <iostream>
 
-int	main(int argc, char *argv[]) {
+int replace(int argc, char *argv[]) {
 	size_t	pos;
-
+	
 	if (argc != 4)
 		return (std::cout << "Wrong Numbers of Arguments" << std::endl, 1);
+	if (!std::strcmp(argv[2], ""))
+		return (std::cout << "String is empty" << std::endl, 1);
 	std::ifstream inFile(argv[1]);
 	if (!inFile.is_open())
 		return (std::cerr << "Error while opening file", 1);
@@ -36,4 +38,9 @@ int	main(int argc, char *argv[]) {
 		}
 		outFile << line << std::endl;
 	}
+	return (0);
+}
+
+int	main(int argc, char *argv[]) {
+	replace(argc, argv);
 }

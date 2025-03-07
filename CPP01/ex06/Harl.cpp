@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:09:21 by adesille          #+#    #+#             */
-/*   Updated: 2025/01/31 12:03:57 by adesille         ###   ########.fr       */
+/*   Updated: 2025/03/07 08:24:38 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -48,6 +48,8 @@ void Harl::complain(std::string level) {
 }
 
 Harl::Harl() {}
+
+Harl::~Harl() {}
 
 void Harl::debug(void) { 
 	std::cout << DEBUG << std::endl;

@@ -6,14 +6,14 @@
 #    By: adesille <adesille@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 11:33:14 by adesille          #+#    #+#              #
-#    Updated: 2025/03/07 07:39:54 by adesille         ###   ########.fr        #
+#    Updated: 2025/03/06 09:36:38 by adesille         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 ######################## ARGUMENTS ########################
 
-NAME = zombie 
-CFLAGS += -Wall -Wextra -Werror -std=c++98
+NAME = convert 
+CFLAGS += -Wall -Wextra -Werror -std=c++98 -g3
 CXX = c++
 
 DEFAULT = \033[0;39m
@@ -25,7 +25,7 @@ YELLOW = \033[0;33m
 
 ######################## SOURCES ########################
 
-SRCS = ./main.cpp ./Zombie.cpp ./zombieHorde.cpp
+SRCS = ./main.cpp ./ScalarConverter.cpp ./utils.cpp
 OBJD_DIR = .obj
 OBJS = $(SRCS:%.cpp=$(OBJD_DIR)/%.o)
 
@@ -51,5 +51,8 @@ fclean : clean
 	@rm -f $(NAME)
 
 re : fclean all
+
+x : all 
+	@./$(NAME)
 
 .PHONY : all clean fclean re

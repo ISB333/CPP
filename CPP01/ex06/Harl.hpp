@@ -6,13 +6,11 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 10:52:31 by adesille          #+#    #+#             */
-/*   Updated: 2025/01/31 11:58:37 by adesille         ###   ########.fr       */
+/*   Updated: 2025/03/07 08:25:34 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#ifndef HARL_HPP
-# define HARL_HPP
-
+#pragma once
 # include <iostream>
 # include <cstring>
 
@@ -25,14 +23,11 @@ class	Harl {
 	public:
 		void	complain( std::string level );
 		Harl();
+		~Harl();
 
 	private:
 		void	debug( void );
 		void	info( void );
 		void	warning( void );
 		void	error( void );
-
-		typedef void (Harl::*Action)();
 };
-
-#endif

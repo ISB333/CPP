@@ -1,28 +1,22 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/23 11:42:58 by adesille          #+#    #+#             */
-/*   Updated: 2025/03/07 07:52:55 by adesille         ###   ########.fr       */
+/*   Created: 2025/03/03 10:35:17 by adesille          #+#    #+#             */
+/*   Updated: 2025/03/06 07:13:41 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#pragma once
-# include <string>
-# include "Weapon.hpp"
+#include "ScalarConverter.hpp"
 
-class	Weapon;
+int main(int argc, char *argv[]) {
+	if (argc > 1) {
+		ScalarConverter a;
+		a.convert(argv[1]);
+	}
 
-class	HumanA {
-	public:
-		HumanA(std::string HumanName, Weapon &weapon);
-		~HumanA();
-		void attack();
-
-	private:
-		std::string name;
-		Weapon &weapon;
-};
+	return (0);
+}

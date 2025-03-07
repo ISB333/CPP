@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   Zombie.hpp                                         :+:      :+:    :+:   */
@@ -6,26 +6,22 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 09:07:43 by adesille          #+#    #+#             */
-/*   Updated: 2025/01/25 13:50:44 by adesille         ###   ########.fr       */
+/*   Updated: 2025/03/07 07:41:09 by adesille         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
-#ifndef ZOMBIE_HPP
-# define ZOMBIE_HPP
-
+#pragma once
 # include <iostream>
 
 class Zombie {
 	public:
-		void		announce( void );
 		Zombie(std::string zombieName);
 		~Zombie();
-
+		void		announce( void );
+	
 	private:
 		std::string	name;
 };
 
 Zombie*		newZombie( std::string name );
 void		randomChump( std::string name );
-
-#endif
