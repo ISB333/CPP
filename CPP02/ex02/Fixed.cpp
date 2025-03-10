@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
+/*   By: isb <isb@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 14:16:25 by adesille          #+#    #+#             */
-/*   Updated: 2025/01/28 09:07:00 by adesille         ###   ########.fr       */
+/*   Updated: 2025/03/10 08:07:38 by isb              ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "Fixed.hpp"
 
@@ -113,6 +113,26 @@ Fixed& Fixed::operator++() {
 Fixed Fixed::operator++(int) {
 	Fixed temp = *this;
 	++this->_rawValue;
+	return (temp);
+}
+/*
+Fixed a(1.5f);
+++a;    // a becomes 1.503906 (because of 8-bit fixed point)
+a++;    // a becomes 1.507812
+
+Due to fixed-point with 8 fractional bits (_nFixed = 8),
+incrementing by 1 in _rawValue actually increases the value
+by 1/256 in the float representation. 
+*/
+
+Fixed& Fixed::operator--() {
+	--this->_rawValue;
+	return (*this);
+}
+
+Fixed Fixed::operator--(int) {
+	Fixed temp = *this;
+	--this->_rawValue;
 	return (temp);
 }
 
