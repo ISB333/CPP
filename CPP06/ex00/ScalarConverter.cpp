@@ -6,11 +6,18 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 07:06:35 by adesille          #+#    #+#             */
-/*   Updated: 2025/03/06 09:47:53 by adesille         ###   ########.fr       */
+/*   Updated: 2025/03/13 12:18:35 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "ScalarConverter.hpp"
+
+/* TODO : 
+	- For CHAR :
+		-> check if input is valid, convertible and displayable 
+	- If a conversion to char is not displayable, print an informative message.	
+*/
+
 
 ScalarConverter::ScalarConverter() {}
 
@@ -71,8 +78,6 @@ void	converter(converted &data, std::string value) {
 
 void ScalarConverter::convert(std::string value) {
 	int type = typeDetector(value);	
-	// static const std::map<int, std::string> typeMap = createTypeMap();
-	// std::cout << typeMap.at(type) << std::endl;
 
 	(void)type;
 	converted data;
