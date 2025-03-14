@@ -6,7 +6,7 @@
 #    By: adesille <adesille@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 11:33:14 by adesille          #+#    #+#              #
-#    Updated: 2025/03/06 09:36:38 by adesille         ###   ########.fr        #
+#    Updated: 2025/03/14 12:26:10 by adesille         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -25,7 +25,7 @@ YELLOW = \033[0;33m
 
 ######################## SOURCES ########################
 
-SRCS = ./main.cpp ./ScalarConverter.cpp ./utils.cpp
+SRCS = ./main.cpp ./ScalarConverter.cpp ./Convert.cpp ./utils.cpp
 OBJD_DIR = .obj
 OBJS = $(SRCS:%.cpp=$(OBJD_DIR)/%.o)
 
