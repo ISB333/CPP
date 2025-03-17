@@ -6,11 +6,15 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 12:23:59 by adesille          #+#    #+#             */
-/*   Updated: 2025/03/14 12:31:39 by adesille         ###   ########.fr       */
+/*   Updated: 2025/03/17 11:58:59 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "ScalarConverter.hpp"
+
+/*
+	TODO: Overflow
+*/
 
 int	typeDetector(const std::string &value) {
 	if (!value.compare("nan") || !value.compare("nanf"))
@@ -18,20 +22,32 @@ int	typeDetector(const std::string &value) {
 	if (isInfinity(value))
 		return (INF);
 
-	bool isdouble = false;
+	bool decimal = false;
+	bool digit = false;
+	bool sign = false;
 	int i = -1;
 	while (value[++i]) {
 		if (!std::isdigit(value[i]))
 		{
-			if (value[i] == '.') {
-				isdouble = true; continue; }
-			else if (value[i] == 'f' && !value[i + 1])
-				return (FLOAT);
-			else if (std::isalpha(value[i]) && !value[i + 1])
+			if (value[i] == '.' && std::isdigit(value[i + 1]) && decimal)
+				return (ERROR);
+			else if (value[i] == '.' && std::isdigit(value[i + 1])) {
+				decimal = true; continue; }
+			else if (std::isalpha(value[i]) && !digit && !value[i + 1])
 				return (CHAR);
+			else if (value[i] == 'f' && decimal && !value[i + 1])
+				return (FLOAT);
+			else if (value[i] == 'f' && !decimal)
+				return (ERROR);
+			else if ((value[i] == '+' || value [i] == '-') && sign == true)
+				return (ERROR);
+			else if ((value[i] == '+' || value [i] == '-') && sign == false) {
+				sign = true; continue; }
 			break ;
 		}
-		else if (!value[i + 1] && isdouble)
+		if (std::isdigit(value[i]))
+			digit = true;
+		if (!value[i + 1] && decimal)
 			return (DOUBLE);
 		else if (!value[i + 1])
 			return (INT);
@@ -52,13 +68,24 @@ void	converter(converted &data, std::string value) {
 		if (!std::isdigit(value[i]))
 			digits_only = false;
 
-	if (value.length() == 1)
+	if (value.length() == 1 && std::isalpha(value[0]))
 		convert_single_value(data, value);
 	else {
-		data.n = static_cast<int>(std::atoi(value.c_str()));
-		data.f = static_cast<float>(std::atof(value.c_str()));
-		data.d = static_cast<double>(std::atof(value.c_str()));
+		if (std::atoi(value.c_str()) < 128)
+			data.c = static_cast<char>(std::strtod(value.c_str(), NULL));
+		else 
+			data.c = '\0';
+		if (intOverflowCheck(value))
+			data.n = static_cast<int>(std::atoi(value.c_str()));
+		else
+			data.intOverflow = true;
+		if (floatOverflowCheck(value))
+			data.f = static_cast<float>(std::atof(value.c_str()));
+		else
+			data.floatOverflow = true;
+		if (doubleOverflowCheck(value))
+			data.d = static_cast<double>(std::atof(value.c_str()));
+		else
+			data.doubleOverflow = true;
 	}
-	if (digits_only)	
-		data.c = static_cast<char>(std::atoi(value.c_str()));
 }

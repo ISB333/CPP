@@ -1,23 +1,26 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Data.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/03 10:35:17 by adesille          #+#    #+#             */
-/*   Updated: 2025/03/17 08:38:17 by adesille         ###   ########.fr       */
+/*   Created: 2025/03/17 08:08:18 by adesille          #+#    #+#             */
+/*   Updated: 2025/03/17 08:12:00 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "ScalarConverter.hpp"
+#pragma once
+# include <iostream>
+# include <cstring>
+// # include "Serializer.hpp"
 
-int main(int argc, char *argv[]) {
-	if (argc != 2) {
-		std::cout << "Usage: " << argv[0] << " <value>" << std::endl;
-		return 1;
-	}
-	
-	ScalarConverter::convert(argv[1]);
-	return 0;
-}
+class Data {
+	private:
+		void		*ptr;
+		uintptr_t	raw;
+
+	public:
+		Data();
+		~Data();
+};

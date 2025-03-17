@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 07:27:52 by adesille          #+#    #+#             */
-/*   Updated: 2025/03/14 12:24:18 by adesille         ###   ########.fr       */
+/*   Updated: 2025/03/17 12:05:08 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -62,4 +62,57 @@ bool isInfinity(const std::string& value) {
 	return (lower == "+inf" || lower == "-inf" || 
 			lower == "inf" || lower == "+inff" || 
 			lower == "-inff" || lower == "inff");
+}
+
+bool intOverflowCheck(const std::string& str) {
+    if (str.empty())
+        return (false);
+    
+    try {
+        if (str.length() > 11) 
+        	return (false);
+        if (str.length() == 10 && str[0] != '-' && str > "2147483647")
+        	return (false);
+        if (str.length() == 11 && str[0] == '-' && str < "-2147483648")
+        	return (false);
+        return (true);
+    } catch (const std::invalid_argument&){
+        return (false);
+    } 
+	catch (const std::out_of_range&) {
+        return (false);
+    }
+}
+
+// bool doubleOverflowCheck(const std::string& str) {
+//     try {
+//         double result = std::strtod(str.c_str(), NULL);
+        
+//         if (result > DBL_MAX || result < -DBL_MAX)
+//             return (false);
+//         return (true);
+//     } catch (...) {
+//         return (false);
+//     }
+// }
+bool doubleOverflowCheck(const std::string& str) {
+    char* endPtr;
+    strtod(str.c_str(), &endPtr);
+    
+    // Check if conversion succeeded and consumed the entire string
+    return *endPtr == '\0';
+}
+
+
+bool floatOverflowCheck(const std::string& str) {
+    try {
+        double temp = std::strtod(str.c_str(), NULL);
+        
+        if (temp > FLT_MAX || temp < -FLT_MAX)
+            return (false);
+        
+        return (true);
+    } catch (...) {
+        return (false);
+    }
 }

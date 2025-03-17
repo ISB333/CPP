@@ -1,23 +1,25 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Serializer.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/03 10:35:17 by adesille          #+#    #+#             */
-/*   Updated: 2025/03/17 08:38:17 by adesille         ###   ########.fr       */
+/*   Created: 2025/03/06 07:06:35 by adesille          #+#    #+#             */
+/*   Updated: 2025/03/17 08:24:54 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "ScalarConverter.hpp"
+#include "Serializer.hpp"
 
-int main(int argc, char *argv[]) {
-	if (argc != 2) {
-		std::cout << "Usage: " << argv[0] << " <value>" << std::endl;
-		return 1;
-	}
+Serializer::Serializer() {};
+
+Serializer::~Serializer() {};
+
+uintptr_t	Serializer::serialize(Data *ptr) {
 	
-	ScalarConverter::convert(argv[1]);
-	return 0;
+}
+
+Data*	Serializer::deserialize(uintptr_t raw) {
+
 }
