@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 07:27:52 by adesille          #+#    #+#             */
-/*   Updated: 2025/03/17 12:05:08 by adesille         ###   ########.fr       */
+/*   Updated: 2025/03/24 10:04:39 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -84,23 +84,11 @@ bool intOverflowCheck(const std::string& str) {
     }
 }
 
-// bool doubleOverflowCheck(const std::string& str) {
-//     try {
-//         double result = std::strtod(str.c_str(), NULL);
-        
-//         if (result > DBL_MAX || result < -DBL_MAX)
-//             return (false);
-//         return (true);
-//     } catch (...) {
-//         return (false);
-//     }
-// }
 bool doubleOverflowCheck(const std::string& str) {
     char* endPtr;
     strtod(str.c_str(), &endPtr);
     
-    // Check if conversion succeeded and consumed the entire string
-    return *endPtr == '\0';
+    return (*endPtr == '\0');
 }
 
 
