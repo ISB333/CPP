@@ -14,6 +14,9 @@
 # include <iostream>
 # include <cstring>
 # include <cstddef>
+# include <cstdlib>
+
+# define nullptr NULL
 
 class Base {
 	public:
