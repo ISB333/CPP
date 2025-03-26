@@ -1,26 +1,30 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Data.hpp                                           :+:      :+:    :+:   */
+/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 08:08:18 by adesille          #+#    #+#             */
-/*   Updated: 2025/03/17 08:12:00 by adesille         ###   ########.fr       */
+/*   Created: 2025/03/24 10:26:15 by adesille          #+#    #+#             */
+/*   Updated: 2025/03/26 09:20:19 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #pragma once
 # include <iostream>
-# include <cstring>
-// # include "Serializer.hpp"
+# include <fstream>
+# include "AForm.hpp"
 
-class Data {
+class ShrubberyCreationForm : public AForm {
 	private:
-		void		*ptr;
-		uintptr_t	raw;
+		std::string target;
 
 	public:
-		Data();
-		~Data();
+		ShrubberyCreationForm();
+		ShrubberyCreationForm(std::string target);
+		ShrubberyCreationForm(const ShrubberyCreationForm &other);
+		ShrubberyCreationForm& operator=(const ShrubberyCreationForm &other);
+		~ShrubberyCreationForm();
+
+		void execute(Bureaucrat const & executor) const;
 };

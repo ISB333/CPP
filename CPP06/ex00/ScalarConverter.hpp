@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 07:06:54 by adesille          #+#    #+#             */
-/*   Updated: 2025/03/17 11:58:05 by adesille         ###   ########.fr       */
+/*   Updated: 2025/03/26 11:11:21 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -38,6 +38,8 @@
 class ScalarConverter {
 	private :
 		ScalarConverter();
+		ScalarConverter(const ScalarConverter &other);
+		ScalarConverter& operator=(const ScalarConverter &other);
 		~ScalarConverter();
 
 	public :

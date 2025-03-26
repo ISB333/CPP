@@ -6,15 +6,12 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 12:23:59 by adesille          #+#    #+#             */
-/*   Updated: 2025/03/17 11:58:59 by adesille         ###   ########.fr       */
+/*   Updated: 2025/03/26 12:03:11 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "ScalarConverter.hpp"
 
-/*
-	TODO: Overflow
-*/
 
 int	typeDetector(const std::string &value) {
 	if (!value.compare("nan") || !value.compare("nanf"))
