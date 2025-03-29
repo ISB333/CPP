@@ -1,7 +1,7 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Span.hpp                                           :+:      :+:    :+:   */
+/*   MutantStack.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -18,30 +18,26 @@
 # include <algorithm>
 # include <ctime>
 # include <vector>
+# include <stack>
+# include <list>
 
-class Span {
-    private:
-        int                 _maxSize;
-        int                 _actualSize;
-        std::vector<int>    _numbers;
-
+template <typename T>
+class MutantStack : public std::stack<T> {
     public:
-        Span();
-        Span(int maxSize);
-        Span(const Span &other);
-        Span& operator=(const Span &other);
-        ~Span();
-
-        void    addNumber(int n);
-        // void    addNumbers(int n);
-        template <typename InputIterator>
-        void addNumbers(InputIterator begin, InputIterator end) {
-            while (begin != end) {
-                addNumber(*begin);
-                ++begin;
-            }
+        MutantStack() : std::stack<T>() {}
+        MutantStack(const MutantStack &other) : std::stack<T>(other) {}
+        MutantStack& operator=(const MutantStack &other) {
+            if (this != &other)
+                std::stack<T>::operator=(other);
+            return *this;
         }
+        ~MutantStack() {}
 
-        int    shortestSpan() const;
-        int    longestSpan() const;
+        typedef typename std::stack<T>::container_type::iterator iterator;
+        typedef typename std::stack<T>::container_type::const_iterator const_iterator;
+
+        iterator begin() { return this->c.begin(); }
+        iterator end() { return this->c.end(); }
+        const_iterator begin() const { return this->c.begin(); }
+        const_iterator end() const { return this->c.end(); }
 };
