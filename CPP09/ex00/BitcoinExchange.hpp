@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 07:48:31 by adesille          #+#    #+#             */
-/*   Updated: 2025/03/29 13:53:47 by adesille         ###   ########.fr       */
+/*   Updated: 2025/03/30 11:35:08 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -20,3 +20,4 @@
 # include <cstdlib>
 # include <algorithm>
 # include <vector>
+# include <climits>
