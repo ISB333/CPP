@@ -6,11 +6,37 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 08:27:20 by adesille          #+#    #+#             */
-/*   Updated: 2025/01/27 12:18:35 by adesille         ###   ########.fr       */
+/*   Updated: 2025/04/11 10:27:06 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "ClapTrap.hpp"
+
+ClapTrap::ClapTrap() : _Name("Gérard"), _hitPoints(100), _energyPoints(50), _attackDamage(20) {
+	std::cout << "ClapTrap " << _Name << " has been created!" << std::endl;
+}
+
+ClapTrap::ClapTrap(std::string name) : _Name(name), _hitPoints(100), _energyPoints(50), _attackDamage(20) {
+	std::cout << "ClapTrap " << name << " has been created!" << std::endl;
+}
+
+ClapTrap::ClapTrap(const ClapTrap &other) {
+	*this = other;
+}
+
+ClapTrap& ClapTrap::operator=(const ClapTrap &other) {
+	if (this != &other)	{
+		_Name = other._Name;
+		_hitPoints = other._hitPoints;
+		_energyPoints = other._energyPoints;
+		_attackDamage = other._attackDamage;
+	}
+	return *this;
+}
+
+ClapTrap::~ClapTrap() {
+	std::cout << "ClapTrap " << _Name << " has been destroyed!" << std::endl;
+}
 
 void	ClapTrap::attack(const std::string& target) {
 	if (_energyPoints && _hitPoints)
@@ -40,20 +66,4 @@ void 	ClapTrap::beRepaired(unsigned int amount) {
 		std::cout << GREEN << "ClapTrap " << _Name << " is dead LOL, too late to repair da shit Bruh" << RESET << std::endl;
 	}
 	std::cout << GREEN << "ClapTrap " << _Name << " repaired itself with " << amount << " hit points, points left: " << _hitPoints << RESET << std::endl;
-}
-
-ClapTrap::ClapTrap(std::string name) : _Name(name), _hitPoints(100), _energyPoints(50), _attackDamage(20) {
-	std::cout << "ClapTrap " << name << " has been created!" << std::endl;
-}
-
-ClapTrap::ClapTrap() {
-	_Name         = "Gérard";
-	_hitPoints    = 100;
-	_energyPoints = 50;
-	_attackDamage = 20;
-	std::cout << "ClapTrap " << _Name << " has been created!" << std::endl;
-}
-
-ClapTrap::~ClapTrap() {
-	std::cout << "ClapTrap " << _Name << " has been destroyed!" << std::endl;
 }
