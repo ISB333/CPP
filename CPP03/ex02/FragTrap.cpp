@@ -29,9 +29,7 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name) {
 FragTrap::FragTrap(const FragTrap &other) : ClapTrap(other) { }
 
 FragTrap& FragTrap::operator=(const FragTrap &other) {
-	if (this != &other)	{
-		ClapTrap::operator=(other);
-	}
+	ClapTrap::operator=(other);
 	return *this;
 }
 

@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 10:57:28 by adesille          #+#    #+#             */
-/*   Updated: 2025/04/14 12:48:44 by adesille         ###   ########.fr       */
+/*   Updated: 2025/04/14 12:59:39 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -29,9 +29,7 @@ ScavTrap::ScavTrap() : ClapTrap() {
 ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other) { }
 
 ScavTrap& ScavTrap::operator=(const ScavTrap &other) {
-	if (this != &other)	{
-		ClapTrap::operator=(other);
-	}
+	ClapTrap::operator=(other);
 	return *this;
 }
 
