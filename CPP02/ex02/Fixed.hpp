@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 14:01:01 by adesille          #+#    #+#             */
-/*   Updated: 2025/01/28 09:55:18 by adesille         ###   ########.fr       */
+/*   Updated: 2025/04/14 09:10:53 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -22,7 +22,6 @@ class	Fixed {
 		Fixed(const float value);
 		Fixed(const Fixed& value);
 		Fixed& operator=(const Fixed& value);
-		friend std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
 		~Fixed();
 
 		int getRawBits() const;
@@ -54,3 +53,5 @@ class	Fixed {
 		int 				_rawValue;
 		const static int	_nFixed = 8;
 };
+
+friend std::ostream& operator<<(std::ostream& os, const Fixed& fixed);

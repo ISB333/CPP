@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 10:46:07 by adesille          #+#    #+#             */
-/*   Updated: 2025/01/27 14:02:58 by adesille         ###   ########.fr       */
+/*   Updated: 2025/02/04 09:53:43 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -33,6 +33,9 @@ class	ClapTrap {
 
 		ClapTrap();
 		ClapTrap(std::string name);
+		ClapTrap(const ClapTrap &other);
+		ClapTrap& operator=(const ClapTrap &other);
+	
 		virtual ~ClapTrap();
 
 	protected:

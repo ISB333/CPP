@@ -13,16 +13,20 @@
 #include "FragTrap.hpp"
 
 FragTrap::FragTrap() : ClapTrap() {
+	_hitPoints = 100;
+	_energyPoints = 100;
+	_attackDamage = 30;
 	std::cout << "FragTrap constructor called for " << "Gérard" << std::endl;
 }
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name) {
+	_hitPoints = 100;
+	_energyPoints = 100;
+	_attackDamage = 30;
 	std::cout << "FragTrap constructor called for " << name << std::endl;
 }
 
-FragTrap::FragTrap(const FragTrap &other) {
-	*this = other;
-}
+FragTrap::FragTrap(const FragTrap &other) : ClapTrap(other) { }
 
 FragTrap& FragTrap::operator=(const FragTrap &other) {
 	if (this != &other)	{
@@ -36,6 +40,6 @@ FragTrap::~FragTrap() {
 }
 
 void	FragTrap::highFivesGuys(void) {
-	std::cout << "Let's do a High Five " << _Name << "!" << std::endl;
+	std::cout << MAGENTA << "Let's do a High Five " << _Name << "!" << RESET << std::endl;
 	std::cout << "👋🙏👋🙏👋🙏👋🙏👋🙏👋🙏👋🙏👋🙏👋🙏👋🙏👋🙏👋🙏👋🙏👋🙏" << std::endl;
 }
