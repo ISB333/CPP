@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 09:22:12 by adesille          #+#    #+#             */
-/*   Updated: 2025/04/11 13:29:56 by adesille         ###   ########.fr       */
+/*   Updated: 2025/04/16 12:21:50 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -24,12 +24,12 @@
 # include <vector>
 # include <climits>
 # include <cctype>
-# include <string_view>
+# include <list>
 
 class RPN {
 	private:
-		std::deque<int> nbrs;
-		std::deque<char> operators;
+		std::list<int>	_nbrs;
+		std::list<char>	_operators;
 
 	public:
 		RPN();

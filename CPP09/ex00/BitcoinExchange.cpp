@@ -6,28 +6,29 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 09:29:47 by adesille          #+#    #+#             */
-/*   Updated: 2025/04/09 13:06:02 by adesille         ###   ########.fr       */
+/*   Updated: 2025/04/16 12:21:35 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "BitcoinExchange.hpp"
 
 std::string	trim(const std::string& s);
-void		trim2dVector(doubleVector &data);
+void		trim2dMap(DataMap &data);
 bool		checkDateValidity(std::string original_date);
 bool		checkValueValidity(std::string original_value);
 int			dateToInt(const std::string& dateStr);
 
-BitcoinExchange::BitcoinExchange() : data(readCSV("data.csv", ',')) { }
+BitcoinExchange::BitcoinExchange() : _data(readCSV("data.csv", ',')) { }
 
-BitcoinExchange::BitcoinExchange(const char *inputFile) : input(readCSV(inputFile, '|')), data(readCSV("data.csv", ',')) { }
+BitcoinExchange::BitcoinExchange(const char *_inputFile) : _input(readCSV(_inputFile, '|')), _data(readCSV("data.csv", ',')) { }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &other) { *this = other; }
 
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange &other) {
 	if (this != &other) {
-		this->data = other.data;
-		this->input = other.input;
+		this->_data = other._data;
+		this->_input = other._input;
+		this->_sortedDates = other._sortedDates;
 	}
 	return *this;
 }
@@ -36,87 +37,85 @@ BitcoinExchange::~BitcoinExchange() { }
 
 void	BitcoinExchange::analyzeAndProcessData() {
 	initializeSortedDates();
-	trim2dVector(input);
-	for (doubleVector::const_iterator it = input.begin() + 1; it != input.end(); ++it) {
-		const std::vector<std::string>& row = *it;
-		if (checkDateValidity(*row.begin()))
-			if (checkValueValidity(row[1]))
-				findCorrespondingPrice(data, row);
+	trim2dMap(_input);
+	
+	for (size_t i = 1; i < _input.size(); i++) {
+		if (checkDateValidity(_input[i][0]))
+			if (checkValueValidity(_input[i][1]))
+				findCorrespondingPrice(_data, _input[i]);
 	}
 }
 
-doubleVector BitcoinExchange::readCSV(const std::string& filename, char separator) {
-    doubleVector data;
+DataMap BitcoinExchange::readCSV(const std::string& filename, char separator) {
+    DataMap data;
     std::ifstream file(filename.c_str());
     
     if (!file.is_open())
         return throw std::runtime_error("could not open file"), data;
 
     std::string line;
+    size_t rowIndex = 0;
+    
     while (std::getline(file, line)) {
-        std::vector<std::string> row;
         std::stringstream lineStream(line);
         std::string cell;
-
-        while (std::getline(lineStream, cell, separator))
-            row.push_back(cell);
-        data.push_back(row);
+        size_t colIndex = 0;
+        
+        while (std::getline(lineStream, cell, separator)) {
+            data[rowIndex][colIndex] = cell;
+            colIndex++;
+        }
+        rowIndex++;
     }
     file.close();
     return data;
 }
 
 void BitcoinExchange::initializeSortedDates() {
-    sortedDates.clear();
+    _sortedDates.clear();
     
-    for (size_t i = 1; i < data.size(); i++) {
-        int dateValue = dateToInt(data[i][0]);
-        sortedDates.push_back(std::make_pair(dateValue, i));
+    for (size_t i = 1; i < _data.size(); i++) {
+        int dateValue = dateToInt(_data[i][0]);
+        _sortedDates[dateValue] = i;
     }
-    
-    std::sort(sortedDates.begin(), sortedDates.end());
 }
 
 size_t BitcoinExchange::findClosestDate(int targetDate) {
-    if (sortedDates.empty()) throw "Empty database";
+    if (_sortedDates.empty()) throw "Empty database";
 
-    std::vector<DateIndexPair>::iterator it = std::lower_bound(
-        sortedDates.begin(),
-        sortedDates.end(),
-        std::make_pair(targetDate, 0)
-    );
-
-    if (it == sortedDates.begin()) {
+    std::map<int, size_t>::iterator it = _sortedDates.lower_bound(targetDate);
+    
+    if (it == _sortedDates.begin()) {
         if (it->first != targetDate) throw "No earlier date found";
         return it->second;
     }
     
-    if (it == sortedDates.end() || it->first != targetDate) {
+    if (it == _sortedDates.end() || it->first != targetDate) {
         --it;
     }
-
+    
     return it->second;
 }
 
-void	BitcoinExchange::findClosestCorrespondingPrice(doubleVector data, std::vector<std::string> input_row) {
-	int targetDate = dateToInt(input_row[0]);
+void	BitcoinExchange::findClosestCorrespondingPrice(DataMap data, std::map<size_t, std::string> _input_row) {
+	int targetDate = dateToInt(_input_row[0]);
 	try {
         size_t closestIndex = findClosestDate(targetDate);
-		print(input_row[0] + " => " + input_row[1] + " = ", std::atof(input_row[1].c_str()) * std::atof(data[closestIndex][1].c_str()));
+		print(_input_row[0] + " => " + _input_row[1] + " = ", std::atof(_input_row[1].c_str()) * std::atof(data[closestIndex][1].c_str()));
     } catch (const char* error) {
         std::cerr << "Error: " << error << std::endl;
     }
 }
 
-void	BitcoinExchange::findCorrespondingPrice(doubleVector data, std::vector<std::string> input_row) {
-	for (doubleVector::const_iterator it = data.begin() + 1; it != data.end(); ++it) {
-		const std::vector<std::string>& data_row = *it;
-		if (!std::strncmp((*input_row.begin()).c_str(), (*data_row.begin()).c_str(), 10)) {
-			print(input_row[0] + " => " + input_row[1] + " = ", std::atof(input_row[1].c_str()) * std::atof(data_row[1].c_str()));
-			return ;
+void	BitcoinExchange::findCorrespondingPrice(DataMap data, std::map<size_t, std::string> _input_row) {
+	for (DataMap::const_iterator it = data.begin(); it != data.end(); ++it) {
+		const std::map<size_t, std::string>& data_row = it->second;
+		if (!std::strncmp(_input_row[0].c_str(), data_row.find(0)->second.c_str(), 10)) {
+			print(_input_row[0] + " => " + _input_row[1] + " = ", std::atof(_input_row[1].c_str()) * std::atof(data_row.find(1)->second.c_str()));
+			return;
 		}
 	}
-	findClosestCorrespondingPrice(data, input_row);
+	findClosestCorrespondingPrice(data, _input_row);
 }
 
 bool overflowCheck(const std::string& s) {
@@ -146,14 +145,14 @@ bool	checkDateValidity(std::string original_date) {
 		date.erase(pos1, 1), date.erase(pos2 - 1, 1);
 
 	if (date.size() != 8 || !date.find_first_not_of("0123456789"))
-		return printError("bad input => " + original_date), false;
+		return printError("bad _input => " + original_date), false;
 
 	std::string month = &date[4], day = &date[6];
 	month.erase(2, 1), month.erase(2, 1);
 	day.erase(2, 1), day.erase(2, 1);
 
 	if (std::atoi(month.c_str()) > 12 || std::atoi(day.c_str()) > 31)
-		return printError("bad input => " + original_date), false;
+		return printError("bad _input => " + original_date), false;
 
 	return true;
 }
@@ -172,11 +171,12 @@ std::string trim(const std::string& s) {
     return s.substr(start, end - start);
 }
 
-void	trim2dVector(doubleVector &data) {
-    for (doubleVector::iterator outer = data.begin(); 
-         outer != data.end(); ++outer) {
-        for (std::vector<std::string>::iterator inner = outer->begin(); inner != outer->end(); ++inner)
-            *inner = trim(*inner);
+void	trim2dMap(DataMap &data) {
+    for (DataMap::iterator outer = data.begin(); outer != data.end(); ++outer) {
+        std::map<size_t, std::string>& innerMap = outer->second;
+        for (std::map<size_t, std::string>::iterator inner = innerMap.begin(); inner != innerMap.end(); ++inner) {
+            inner->second = trim(inner->second);
+        }
     }
 }
 

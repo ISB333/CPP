@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:13:05 by adesille          #+#    #+#             */
-/*   Updated: 2025/04/11 14:06:55 by adesille         ###   ########.fr       */
+/*   Updated: 2025/04/16 12:39:30 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -18,7 +18,7 @@ void	print(int n)                     {        std::cout << n << std::endl;     
 void	print(char c)                    {        std::cout << c << std::endl;         }
 bool	isSpace(char c)                  {              return c == ' ';               }
 
-void	checkArgsValidity(std::string str){
+void	checkArgsValidity(std::string str) {
 	if (str.find_first_not_of("0123456789 +-/*") != std::string::npos)
 		throw std::invalid_argument("Wrong characters in the args, only digits 0-9 and +-*/ allowed");
 	std::string formula;

@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 06:38:33 by adesille          #+#    #+#             */
-/*   Updated: 2025/03/26 09:20:19 by adesille         ###   ########.fr       */
+/*   Updated: 2025/04/16 13:02:23 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -26,6 +26,7 @@
 # define WHITE		"\033[37m"
 # define HYEL 		"\e[0;93m"
 # define RESET		"\033[0m"
+# include "AForm.hpp"
 
 class AForm;
 
@@ -60,5 +61,3 @@ class Bureaucrat {
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat);
-
-# include "AForm.hpp"

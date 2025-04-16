@@ -6,13 +6,13 @@
 #    By: adesille <adesille@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 11:33:14 by adesille          #+#    #+#              #
-#    Updated: 2025/04/09 13:09:10 by adesille         ###   ########.fr        #
+#    Updated: 2025/04/16 12:52:32 by adesille         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 ######################## ARGUMENTS ########################
 
-NAME = RPN 
+NAME = PMergeMe 
 CFLAGS += -Wall -Wextra -Werror -std=c++98 -g3
 CXX = c++
 
@@ -25,7 +25,7 @@ YELLOW = \033[0;33m
 
 ######################## SOURCES ########################
 
-SRCS = ./main.cpp ./RPN.cpp
+SRCS = ./main.cpp ./PMergeMe.cpp
 OBJD_DIR = .obj
 OBJS = $(SRCS:%.cpp=$(OBJD_DIR)/%.o)
 

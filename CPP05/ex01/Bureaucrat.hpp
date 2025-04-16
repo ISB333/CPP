@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 06:38:33 by adesille          #+#    #+#             */
-/*   Updated: 2025/03/04 08:12:16 by adesille         ###   ########.fr       */
+/*   Updated: 2025/04/16 13:01:31 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -15,6 +15,7 @@
 # include <iostream>
 # include <cstring>
 # include <exception>
+# include "Form.hpp"
 
 # define BLACK		"\033[30m"
 # define RED		"\033[31m"
@@ -60,5 +61,3 @@ class Bureaucrat {
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat);
-
-# include "Form.hpp"

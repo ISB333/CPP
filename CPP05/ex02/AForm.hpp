@@ -6,13 +6,14 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 07:54:59 by adesille          #+#    #+#             */
-/*   Updated: 2025/03/26 09:20:19 by adesille         ###   ########.fr       */
+/*   Updated: 2025/04/16 13:02:22 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #pragma once
 # include <iostream>
 # include <cstring>
+# include "Bureaucrat.hpp"
 
 class Bureaucrat;
 
@@ -39,7 +40,6 @@ class AForm {
 		// New pure virtual method to make the class abstract
 		virtual void execute(Bureaucrat const & executor) const = 0;
 		
-		// Exceptions
 		class GradeTooHighException : public std::exception {
 			public:
 				virtual const char* what() const throw();
@@ -57,5 +57,3 @@ class AForm {
 };
 
 std::ostream& operator<<(std::ostream& os, const AForm& form);
-
-# include "Bureaucrat.hpp"

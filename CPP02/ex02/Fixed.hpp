@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 14:01:01 by adesille          #+#    #+#             */
-/*   Updated: 2025/04/14 09:10:53 by adesille         ###   ########.fr       */
+/*   Updated: 2025/04/16 13:00:49 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -54,4 +54,4 @@ class	Fixed {
 		const static int	_nFixed = 8;
 };
 
-friend std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
+std::ostream& operator<<(std::ostream& os, const Fixed& fixed);

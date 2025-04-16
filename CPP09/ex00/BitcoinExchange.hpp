@@ -20,18 +20,17 @@
 # include <cstddef>
 # include <cstdlib>
 # include <algorithm>
-# include <vector>
+# include <map>
 # include <climits>
 # include <cctype>
 
-typedef std::vector<std::vector<std::string> > doubleVector;
-typedef std::pair<int, int> DateIndexPair;
+typedef std::map<size_t, std::map<size_t, std::string> > DataMap;
 
 class BitcoinExchange {
 	private:
-		std::vector<DateIndexPair> sortedDates;
-		doubleVector input;
-		doubleVector data;
+		std::map<int, size_t>	_sortedDates;
+		DataMap 				_input;
+		DataMap					_data;
 
 	public:
 		BitcoinExchange();
@@ -40,12 +39,12 @@ class BitcoinExchange {
 		BitcoinExchange& operator=(const BitcoinExchange &other);
 		~BitcoinExchange();
 
-		doubleVector	readCSV(const std::string& filename, char separator);
-		void			initializeSortedDates();
-		size_t			findClosestDate(int targetDate);
-		void			findClosestCorrespondingPrice(doubleVector data, std::vector<std::string> input_row);
-		void			findCorrespondingPrice(doubleVector data, std::vector<std::string> input_row);
-		void			analyzeAndProcessData();
+		DataMap readCSV(const std::string& filename, char separator);
+		void initializeSortedDates();
+		size_t findClosestDate(int targetDate);
+		void findClosestCorrespondingPrice(DataMap data, std::map<size_t, std::string> input_row);
+		void findCorrespondingPrice(DataMap data, std::map<size_t, std::string> input_row);
+		void analyzeAndProcessData();
 };
 
 int		dateToInt(const std::string& dateStr);
@@ -54,4 +53,4 @@ void	print(int n);
 void	print(double n);
 void	print(std::string str, double n);
 void	printError(std::string str);
-void	trim2dVector(doubleVector &data);
+void	trim2dMap(DataMap &data);
