@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 09:22:12 by adesille          #+#    #+#             */
-/*   Updated: 2025/04/16 12:46:39 by adesille         ###   ########.fr       */
+/*   Updated: 2025/04/18 13:26:29 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -25,25 +25,33 @@
 # include <climits>
 # include <cctype>
 # include <string_view>
+# include <cerrno>
 
-typedef std::vector<int> vector;
+typedef std::vector<std::vector<int> >	doubleVector;
+typedef std::vector<int>				vector;
+typedef std::deque<std::deque<int> >	doubleDeque;
+typedef std::deque<int>					deque;
 
 class PMergeMe {
 	private:
-		std::vector<int>	_vec;
-		std::deque<int>		_deq;
+		vector	_vec, _vecSorted, _vecWinners;
+		doubleVector _vecLosers;
+		deque	_deq, _deqSorted, _deqWinners;
+		doubleDeque _deqLosers;
 
-		std::vector<int>	_vecSorted;
-		std::deque<int>		_deqSorted;
+		// std::vector<int>	_vecSorted;
+		// std::deque<int>		_deqSorted;
 
-		double				_vecSortTime;
-		double				_deqSortTime;
+		// double				_vecSortTime;
+		// double				_deqSortTime;
 
 		bool				isPositiveInteger(const std::string &s) const;
-		static vector		init(char **argv);
+		bool				isNotOverflow(const char *s) const;
+		void				analyzeAndProcessData(char **argv);
+		vector				init(char **argv);
 
-		template<typename Container>
-		void				fordJohnsonSort(Container &data);
+		// template<typename Container>
+		void				fordJohnsonSort();
 
 	public:
 		PMergeMe();
@@ -52,7 +60,6 @@ class PMergeMe {
 		PMergeMe& operator=(const PMergeMe &other);
 		~PMergeMe();
 
-		void				analyzeAndProcessData(char **argv);
 		void				printData() const;
 };
 

@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 11:39:13 by adesille          #+#    #+#             */
-/*   Updated: 2025/04/16 12:55:22 by adesille         ###   ########.fr       */
+/*   Updated: 2025/04/18 13:08:04 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -22,14 +22,12 @@ int	main(int argc, char *argv[]) {
 		try {
 			PMergeMe pmerge(argv);
 
-			pmerge.printData();
+			// pmerge.printData();
+			// pmerge.analyzeAndProcessData()
 			return 0;
 		} catch (const std::exception &error) {
 			return printError(error.what()), 1;
 		}
-
-
-		// merge.analy
 	}
 	return printError("the program needs arguments"), 1;
 }
