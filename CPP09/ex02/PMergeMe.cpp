@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 11:38:06 by adesille          #+#    #+#             */
-/*   Updated: 2025/04/18 13:27:57 by adesille         ###   ########.fr       */
+/*   Updated: 2025/04/19 13:34:42 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -62,29 +62,43 @@ vector PMergeMe::init(char **argv) {
 	return result;
 }
 
-void	PMergeMe::printData() const {
-	std::cout << "Vector: ";
-	for (size_t i = 0; i < _vec.size(); ++i)
-		std::cout << _vec[i] << " ";
-	std::cout << "\nDeque: ";
-	for (std::deque<int>::const_iterator it = _deq.begin(); it != _deq.end(); ++it)
-		std::cout << *it << " ";
-	std::cout << std::endl;
-}
-void	printVec(vector _vecWinners, vector _vecLosers)  {
-	std::cout << "Winners Vectors: ";
-	for (size_t i = 0; i < _vecWinners.size(); ++i)
-		std::cout << _vecWinners[i] << " ";
-	std::cout << std::endl;
-	std::cout << "Losers Vectors: ";
-	for (size_t i = 0; i < _vecLosers.size(); ++i)
-		std::cout << _vecLosers[i] << " ";
-	std::cout << std::endl;
+// void	printVec(vector _vecWinners, vector _vecLosers)  {
+// 	std::cout << "Winners Vectors: ";
+// 	for (size_t i = 0; i < _vecWinners.size(); ++i)
+// 		std::cout << _vecWinners[i] << " ";
+// 	std::cout << std::endl;
+// 	std::cout << "Losers Vectors: ";
+// 	for (size_t i = 0; i < _vecLosers.size(); ++i)
+// 		std::cout << _vecLosers[i] << " ";
+// 	std::cout << std::endl;
+// }
+// template<typename Seq>
+// void	printDoubleVec(Seq& Losers)  {
+// 	std::cout << "\nAll Losers" << std::endl;
+// 	for (unsigned long i = 0; i < Losers.size(); ++i) {
+// 		for (unsigned long j = 0; j < Losers[i].size(); ++j) {
+// 			std::cout << Losers[i][j] << " ";
+// 		}
+// 		std::cout << std::endl;
+// 	}
+// }
+
+void	PMergeMe::printData(std::string s) const {
+	std::ostringstream oss;
+	s += ": ";
+	for (size_t i = 0; i < _vec.size() && i < 6; ++i) {
+	 	oss << _vec[i];
+		s += oss.str() + " ";
+		oss.str("");
+		if (i == 5 && i < _vec.size() - 1)
+			s += "[...]";
+	}
+	std::cout << s << std::endl;
 }
 
 
-template<typename T>
-void	pairUp(const std::vector <T> &data, std::vector<T> &winners, std::vector<T> &losers) {
+template<typename Seq>
+void	pairUp(const Seq& data, Seq& winners, Seq& losers) {
 	winners.clear();
 	losers.clear();
 
@@ -99,27 +113,63 @@ void	pairUp(const std::vector <T> &data, std::vector<T> &winners, std::vector<T>
 			losers.push_back(data[i]);
 		}
 	}
-	if (n % 2 == 1) {
+	if (n & 1) {
 		winners.push_back(data.back());
 	}
 }
-
-void	PMergeMe::fordJohnsonSort() {
-	for (int i = 0; _vec.size() != 1; i++) {
-		pairUp(_vec, _vecWinners, _vecLosers[i]);
-		printVec(_vecWinners, _vecLosers[i]);
+void	PMergeMe::fordJohnsonSortVec() {
+	while (_vec.size() > 1) {
+		vector currentLosers;
+		pairUp(_vec, _vecWinners, currentLosers);
+		_vecLosers.push_back(currentLosers);
 		_vec = _vecWinners;
 	}
-	// pairUp(_vec, _vecWinners, _vecLosers);
-	// printVec(_vecWinners, _vecLosers);
+	while (_vecLosers.size() > 0) {
+		int i = _vecLosers.size() - 1;
+		while (_vecLosers[i].size()) {
+			std::vector<int>::iterator it = std::upper_bound(_vec.begin(), _vec.end(), _vecLosers[i][0]);
+			_vec.insert(it, _vecLosers[i][0]);
+			_vecLosers[i].erase(_vecLosers[i].begin());
+		}
+		_vecLosers.pop_back();
+	}
 }
 
+void	PMergeMe::fordJohnsonSortDeq() {
+	while (_deq.size() > 1) {
+		deque currentLosers;
+		pairUp(_deq, _deqWinners, currentLosers);
+		_deqLosers.push_back(currentLosers);
+		_deq = _deqWinners;
+	}
+	while (_deqLosers.size() > 0) {
+		int i = _deqLosers.size() - 1;
+		while (_deqLosers[i].size()) {
+			std::deque<int>::iterator it = std::upper_bound(_deq.begin(), _deq.end(), _deqLosers[i][0]);
+			_deq.insert(it, _deqLosers[i][0]);
+			_deqLosers[i].erase(_deqLosers[i].begin());
+		}
+		_deqLosers.pop_back();
+	}
+}
 
-/*
-	while (_vec.size() != 1)
-		pairUp();
-		storeLoosers();
-	while (_vecSorted.size() != originalSize)
-		insertLosers();
+void PMergeMe::fordJohnsonSort() {
+    printData("Before");
 
-*/
+    struct timeval t0, t1, t2;
+    ::gettimeofday(&t0, NULL);
+    fordJohnsonSortVec();
+    ::gettimeofday(&t1, NULL);
+    fordJohnsonSortDeq();
+    ::gettimeofday(&t2, NULL);
+
+    printData("After");
+
+    double vec_sec = double(t1.tv_sec  - t0.tv_sec )
+                   + double(t1.tv_usec - t0.tv_usec) / 1e6;
+    double deq_sec = double(t2.tv_sec  - t1.tv_sec )
+                   + double(t2.tv_usec - t1.tv_usec) / 1e6;
+
+    std::cout << "Vector time: " << std::fixed << std::setprecision(5) << vec_sec << " s\n"
+        << "Deque time:  " << std::fixed << std::setprecision(5) << deq_sec << " s\n";
+}
