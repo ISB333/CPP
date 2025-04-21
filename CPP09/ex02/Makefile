@@ -6,13 +6,13 @@
 #    By: adesille <adesille@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 11:33:14 by adesille          #+#    #+#              #
-#    Updated: 2025/04/16 12:52:32 by adesille         ###   ########.fr        #
+#    Updated: 2025/04/21 09:53:42 by adesille         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 ######################## ARGUMENTS ########################
 
-NAME = PMergeMe 
+NAME = PmergeMe 
 CFLAGS += -Wall -Wextra -Werror -std=c++98 -g3
 CXX = c++
 
@@ -25,7 +25,7 @@ YELLOW = \033[0;33m
 
 ######################## SOURCES ########################
 
-SRCS = ./main.cpp ./PMergeMe.cpp
+SRCS = ./main.cpp ./PmergeMe.cpp
 OBJD_DIR = .obj
 OBJS = $(SRCS:%.cpp=$(OBJD_DIR)/%.o)
 

@@ -6,11 +6,11 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 11:39:13 by adesille          #+#    #+#             */
-/*   Updated: 2025/04/18 13:08:04 by adesille         ###   ########.fr       */
+/*   Updated: 2025/04/21 09:53:50 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "PMergeMe.hpp"
+#include "PmergeMe.hpp"
 
 void	printError(std::string str)      { std::cerr << "Error: " << str << std::endl; }
 void	print(std::string str)           {       std::cout << str << std::endl;        }
