@@ -1,26 +1,31 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.hpp                                          :+:      :+:    :+:   */
+/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/04 11:46:52 by adesille          #+#    #+#             */
-/*   Updated: 2025/04/25 09:05:37 by adesille         ###   ########.fr       */
+/*   Created: 2025/03/24 10:30:42 by adesille          #+#    #+#             */
+/*   Updated: 2025/03/26 09:20:19 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #pragma once
+# include <iostream>
+# include <cstdlib>
+# include <ctime>
+# include "AForm.hpp"
 
-#include "Animal.hpp"
-
-class	Brain {
-	public:
-		Brain();
-		Brain(const Brain& src);
-		Brain& 	operator=(const Brain& rhs);
-		virtual ~Brain();
-
+class RobotomyRequestForm : public AForm {
 	private:
-		std::string _ideas[100];
+		std::string target;
+
+	public:
+		RobotomyRequestForm();
+		RobotomyRequestForm(std::string target);
+		RobotomyRequestForm(const RobotomyRequestForm &other);
+		RobotomyRequestForm& operator=(const RobotomyRequestForm &other);
+		~RobotomyRequestForm();
+
+		void execute(Bureaucrat const & executor) const;
 };

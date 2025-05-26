@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 07:54:59 by adesille          #+#    #+#             */
-/*   Updated: 2025/04/16 13:02:22 by adesille         ###   ########.fr       */
+/*   Updated: 2025/05/26 09:38:54 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -37,7 +37,6 @@ class AForm {
 		int			getExecGrade() const;
 		void		beSigned(const Bureaucrat& bureaucrat);
 		
-		// New pure virtual method to make the class abstract
 		virtual void execute(Bureaucrat const & executor) const = 0;
 		
 		class GradeTooHighException : public std::exception {

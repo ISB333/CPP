@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 10:35:17 by adesille          #+#    #+#             */
-/*   Updated: 2025/03/03 12:36:25 by adesille         ###   ########.fr       */
+/*   Updated: 2025/05/26 08:39:34 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -90,11 +90,9 @@ void testCopyConstructorAndAssignment() {
 		Bureaucrat a("Dupont", 10);
 		std::cout << "Original: " << a << std::endl;
 		
-		// Copy constructor
 		Bureaucrat b(a);
 		std::cout << "Copy constructed: " << b << std::endl;
 		
-		// Assignment operator
 		Bureaucrat c;
 		std::cout << "Before assignment: " << c << std::endl;
 		c = a;

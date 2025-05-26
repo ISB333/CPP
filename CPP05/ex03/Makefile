@@ -6,13 +6,13 @@
 #    By: adesille <adesille@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 11:33:14 by adesille          #+#    #+#              #
-#    Updated: 2025/04/25 08:59:57 by adesille         ###   ########.fr        #
+#    Updated: 2025/05/26 09:23:23 by adesille         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 ######################## ARGUMENTS ########################
 
-NAME = Poly
+NAME = Bureaucrat 
 CFLAGS += -Wall -Wextra -Werror -std=c++98 -g3
 CXX = c++
 
@@ -25,7 +25,9 @@ YELLOW = \033[0;33m
 
 ######################## SOURCES ########################
 
-SRCS = ./main.cpp ./Animal.cpp ./Dog.cpp ./Cat.cpp ./Brain.cpp ./WrongAnimal.cpp ./WrongCat.cpp
+SRCS = ./main.cpp ./Bureaucrat.cpp ./AForm.cpp \
+       ./ShrubberyCreationForm.cpp ./RobotomyRequestForm.cpp ./PresidentialPardonForm.cpp \
+	   ./Intern.cpp 
 OBJD_DIR = .obj
 OBJS = $(SRCS:%.cpp=$(OBJD_DIR)/%.o)
 
@@ -49,6 +51,7 @@ clean :
 
 fclean : clean
 	@rm -f $(NAME)
+	@rm -f *_shrubbery
 
 re : fclean all
 

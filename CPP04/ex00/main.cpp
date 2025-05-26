@@ -6,13 +6,15 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:52:22 by adesille          #+#    #+#             */
-/*   Updated: 2025/02/04 11:40:05 by adesille         ###   ########.fr       */
+/*   Updated: 2025/04/25 08:47:07 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 
 int main()
 {
@@ -60,6 +62,19 @@ int main()
 		for (int k = 0; k < 4; k++) {
 			delete animals[k];
 		}
+	}
+	{
+		std::cout << RED << "\n=== WrongAnimal Tests ===" << RESET << std::endl;
+		WrongAnimal* wrongMeta = new WrongAnimal();
+		WrongAnimal* wrongCat = new WrongCat();
+		
+		std::cout << wrongCat->getType() << " " << std::endl;
+		wrongMeta->makeSound();
+		
+		wrongCat->makeSound();
+		
+		delete wrongMeta;
+		delete wrongCat;
 	}
 
 	return 0;

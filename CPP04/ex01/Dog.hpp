@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 11:46:46 by adesille          #+#    #+#             */
-/*   Updated: 2025/02/04 11:49:17 by adesille         ###   ########.fr       */
+/*   Updated: 2025/04/25 09:05:26 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -19,10 +19,10 @@ class	Dog : public Animal {
 	public:
 		Dog();
 		Dog(const Dog& src);
-		Dog& 			operator=(const Dog& rhs);
-		virtual ~Dog(); // Assure destruction of derived class and potential future inheritance of this Class
+		Dog& operator=(const Dog& rhs);
+		virtual ~Dog();
 		
-		virtual void	makeSound() const; // To call this derived Class Functions from the base Class
+		virtual void	makeSound() const;
 
 	private:
 		Brain* _brain;

@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:01:43 by adesille          #+#    #+#             */
-/*   Updated: 2025/02/04 11:55:06 by adesille         ###   ########.fr       */
+/*   Updated: 2025/04/25 09:13:16 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -37,10 +37,6 @@ Animal::~Animal() {
 
 std::string		Animal::getType() const {
 	return (_type);
-}
-
-void	Animal::makeSound() const {
-	std::cout << "* Generic animal sound *" << std::endl;
 }
 
 void	Animal::newBrain() {

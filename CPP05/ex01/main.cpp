@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 10:35:17 by adesille          #+#    #+#             */
-/*   Updated: 2025/03/04 08:31:57 by adesille         ###   ########.fr       */
+/*   Updated: 2025/05/26 09:39:04 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -121,7 +121,6 @@ void testForms() {
 		std::cerr << "Exception caught: " << e.what() << std::endl;
 	}
 
-	// Testing Form::beSigned and Bureaucrat::signForm
 	try {
 		std::cout << "\nCreating valid form:" << std::endl;
 		Form validForm("Tax Form", 100, 50);

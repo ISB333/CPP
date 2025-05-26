@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 06:38:33 by adesille          #+#    #+#             */
-/*   Updated: 2025/03/03 12:33:52 by adesille         ###   ########.fr       */
+/*   Updated: 2025/05/26 09:39:19 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -44,7 +44,6 @@ class Bureaucrat {
 		void		incrementGrade();
 		void		decrementGrade();
 
-		// Overrides std::exception::what() to provide a custom error message.
 		class GradeTooHighException : public std::exception {
 			public:
 				virtual const char* what() const throw();

@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:55:00 by adesille          #+#    #+#             */
-/*   Updated: 2025/02/04 11:43:19 by adesille         ###   ########.fr       */
+/*   Updated: 2025/04/25 08:48:47 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -29,11 +29,11 @@
 class	Animal {
 	public:
 		Animal();
-		Animal(const Animal& src);
 		Animal(std::string type);
+		Animal(const Animal& src);
+		Animal&	operator=(const Animal& rhs);
 		virtual ~Animal();
 		
-		Animal&			operator=(const Animal& rhs);
 		std::string		getType() const;
 		virtual void	makeSound() const;
 

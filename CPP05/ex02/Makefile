@@ -6,13 +6,13 @@
 #    By: adesille <adesille@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 11:33:14 by adesille          #+#    #+#              #
-#    Updated: 2025/03/26 09:20:19 by adesille         ###   ########.fr        #
+#    Updated: 2025/05/26 08:47:08 by adesille         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 ######################## ARGUMENTS ########################
 
-NAME = ConcreteForm
+NAME = Bureaucrat 
 CFLAGS += -Wall -Wextra -Werror -std=c++98 -g3
 CXX = c++
 

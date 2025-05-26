@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 10:35:17 by adesille          #+#    #+#             */
-/*   Updated: 2025/03/26 09:20:19 by adesille         ###   ########.fr       */
+/*   Updated: 2025/05/26 08:51:04 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -26,11 +26,9 @@ void testShrubberyCreationForm() {
 		Bureaucrat bob("Bob", 140);
 		Bureaucrat jim("Jim", 130);
 		
-		// Bob can sign but not execute
 		bob.signForm(form);
-		bob.executeForm(form); // Should fail - grade too low
+		bob.executeForm(form);
 		
-		// Jim can execute
 		jim.executeForm(form);
 	} catch (std::exception &e) {
 		std::cerr << "Exception caught: " << e.what() << std::endl;
@@ -48,11 +46,9 @@ void testRobotomyRequestForm() {
 		Bureaucrat alice("Alice", 70);
 		Bureaucrat dave("Dave", 40);
 		
-		// Alice can sign but not execute
 		alice.signForm(form);
-		alice.executeForm(form); // Should fail - grade too low
+		alice.executeForm(form);
 		
-		// Dave can execute
 		dave.executeForm(form);
 	} catch (std::exception &e) {
 		std::cerr << "Exception caught: " << e.what() << std::endl;
@@ -70,11 +66,9 @@ void testPresidentialPardonForm() {
 		Bureaucrat charlie("Charlie", 20);
 		Bureaucrat president("President", 1);
 		
-		// Charlie can sign but not execute
 		charlie.signForm(form);
-		charlie.executeForm(form); // Should fail - grade too low
+		charlie.executeForm(form);
 		
-		// President can execute
 		president.executeForm(form);
 	} catch (std::exception &e) {
 		std::cerr << "Exception caught: " << e.what() << std::endl;
@@ -89,10 +83,8 @@ void testUnsignedFormExecution() {
 		ShrubberyCreationForm form("test");
 		std::cout << form << std::endl;
 		
-		Bureaucrat john("John", 1); // Highest grade
-		
-		// Try to execute without signing
-		john.executeForm(form); // Should fail - form not signed
+		Bureaucrat john("John", 1);
+		john.executeForm(form);
 	} catch (std::exception &e) {
 		std::cerr << "Exception caught: " << e.what() << std::endl;
 	}
