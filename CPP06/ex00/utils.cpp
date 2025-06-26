@@ -57,7 +57,8 @@ void	print_inf(const std::string& value) {
 
 bool isInfinity(const std::string& value) {
 	std::string lower = value;
-	std::transform(lower.begin(), lower.end(), lower.begin(), ::tolower);
+	for (size_t i = 0; i < lower.length(); ++i)
+		lower[i] = std::tolower(static_cast<unsigned char>(lower[i]));
 	
 	return (lower == "+inf" || lower == "-inf" || 
 			lower == "inf" || lower == "+inff" || 

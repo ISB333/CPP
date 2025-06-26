@@ -20,7 +20,6 @@
 # include <sstream>
 # include <cmath>
 # include <string>
-# include <algorithm>
 # include <cctype>
 # include <limits>
 # include <cfloat>
@@ -32,8 +31,6 @@
 # define DOUBLE 3
 # define INF 4
 # define NANF 5
-
-# define STRINGSIZE(x) #x
 
 class ScalarConverter {
 	private :
@@ -54,7 +51,7 @@ struct	converted {
 	bool	intOverflow;
 	bool	floatOverflow;
 	bool	doubleOverflow;
-	converted() : c(0), n(0), f(0.0f), d(0.0) {}
+	converted() : c(0), n(0), f(0.0f), d(0.0), intOverflow(false), floatOverflow(false), doubleOverflow(false) {}
 };
 
 void	printer(char value);

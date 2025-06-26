@@ -56,15 +56,10 @@ void	convert_single_value(converted &data, std::string value) {
 	data.c = static_cast<char>(value[0]);
 	data.n = static_cast<int>(value[0]);
 	data.f = static_cast<float>(static_cast<int>(value[0]));
-	data.d = static_cast<float>(static_cast<int>(value[0]));
+	data.d = static_cast<double>(static_cast<int>(value[0]));
 }
 
 void	converter(converted &data, std::string value) {
-	bool digits_only = true;
-	for (int i = 0; value[i]; i++)
-		if (!std::isdigit(value[i]))
-			digits_only = false;
-
 	if (value.length() == 1 && std::isalpha(value[0]))
 		convert_single_value(data, value);
 	else {
@@ -80,8 +75,11 @@ void	converter(converted &data, std::string value) {
 			data.f = static_cast<float>(std::atof(value.c_str()));
 		else
 			data.floatOverflow = true;
-		if (doubleOverflowCheck(value))
-			data.d = static_cast<double>(std::atof(value.c_str()));
+		std::string doubleValue = value;
+		if (!doubleValue.empty() && doubleValue[doubleValue.length() - 1] == 'f')
+			doubleValue = doubleValue.substr(0, doubleValue.length() - 1);
+		if (doubleOverflowCheck(doubleValue))
+			data.d = static_cast<double>(std::strtod(doubleValue.c_str(), NULL));
 		else
 			data.doubleOverflow = true;
 	}

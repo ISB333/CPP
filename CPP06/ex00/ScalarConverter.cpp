@@ -16,7 +16,7 @@ ScalarConverter::ScalarConverter() {}
 
 ScalarConverter::ScalarConverter(const ScalarConverter &other) {(void)other;}
 
-ScalarConverter& ScalarConverter::operator=(const ScalarConverter &other) {return(*this);}
+ScalarConverter& ScalarConverter::operator=(const ScalarConverter &other) { (void)other; return(*this);}
 
 ScalarConverter::~ScalarConverter() {}
 
@@ -31,9 +31,6 @@ void ScalarConverter::convert(const std::string value) {
 		std::cout << "Invalid Input" << std::endl;
 	else {
 		converted data;
-		data.intOverflow = false;
-		data.floatOverflow = false;
-		data.doubleOverflow = false;
 		converter(data, value);
 		printer(data.c);
 		if (data.intOverflow)
