@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:13:05 by adesille          #+#    #+#             */
-/*   Updated: 2025/03/27 10:00:02 by adesille         ###   ########.fr       */
+/*   Updated: 2025/06/30 14:26:51 by adesille         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "iter.hpp"
 
@@ -21,7 +21,6 @@ void nullifyIntPointer(int*& ptr) {
     ptr = NULL;
 }
 
-// --- Test Utilities ---
 void print_divider(const char* message) {
     std::cout << "\n\033[1;35m== " << message << " ==\033[0m\n";
 }
@@ -31,21 +30,25 @@ void print_element(T& element) {
     std::cout << element << " ";
 }
 
-// --- Primitive Type Tests ---
+// -------------------------------------------------------------------
+// Test 1: Primitive Type (int)
+// -------------------------------------------------------------------
 void test_int_array() {
     print_divider("Testing int array");
     int nums[] = {1, 2, 3, 4, 5};
     const size_t len = sizeof(nums)/sizeof(int);
     
-    iter(nums, len, doubleIntFunc);
+    ::iter(nums, len, doubleIntFunc);
     
     std::cout << "Results: ";
-    iter(nums, len, print_element<int>);
+    ::iter(nums, len, print_element<int>);
     std::cout << "Expected: 2 4 6 8 10" << std::endl;
 }
 
 
-// --- Floating Point Test ---
+// -------------------------------------------------------------------
+// Test 2: Floating Point Type (float)
+// -------------------------------------------------------------------
 struct FloatModifier {
     void operator()(float& f) const { f += 0.5f; }
 };
@@ -56,14 +59,16 @@ void test_float_array() {
     size_t len = sizeof(values)/sizeof(float);
     
     FloatModifier modifier;
-    iter(values, len, modifier);
+    ::iter(values, len, modifier);
     
     std::cout << "Results: ";
-    iter(values, len, print_element<float>);
+    ::iter(values, len, print_element<float>);
     std::cout << "Expected: 1.6 2.7 3.8" << std::endl;
 }
 
-// --- Const Array Test ---
+// -------------------------------------------------------------------
+// Test 3: Const Array
+// -------------------------------------------------------------------
 void print_const(const int& x) {
     std::cout << x << " ";
 }
@@ -73,11 +78,13 @@ void test_const_array() {
     const int const_nums[] = {10, 20, 30};
     size_t len = sizeof(const_nums)/sizeof(int);
     
-    iter(const_nums, len, print_const);
+    ::iter(const_nums, len, print_const);
     std::cout << "Expected: 10 20 30" << std::endl;
 }
 
-// --- Pointer Array Test ---
+// -------------------------------------------------------------------
+// Test 4: Pointer Array
+// -------------------------------------------------------------------
 void nullify(void*& ptr) {
     ptr = NULL;
 }
@@ -87,7 +94,7 @@ void test_pointer_array() {
     int* ptrs[3] = {new int(1), new int(2), new int(3)};
     const size_t len = 3;
     
-    iter(ptrs, len, nullifyIntPointer);
+    ::iter(ptrs, len, nullifyIntPointer);
     
     std::cout << "Pointer values: ";
     for (size_t i = 0; i < len; ++i)
@@ -95,7 +102,9 @@ void test_pointer_array() {
     std::cout << "\nExpected: NULL NULL NULL" << std::endl;
 }
 
-// --- Struct Array Test ---
+// -------------------------------------------------------------------
+// Test 5: Struct Array
+// -------------------------------------------------------------------
 struct TestStruct {
     int x;
     int y;
@@ -116,22 +125,23 @@ void test_struct_array() {
     TestStruct structs[3];
     size_t len = 3;
     
-    iter(structs, len, modify_struct);
+    ::iter(structs, len, modify_struct);
     
     std::cout << "Results: ";
-    iter(structs, len, print_element<TestStruct>);
+    ::iter(structs, len, print_element<TestStruct>);
     std::cout << "Expected: {1,-1} {1,-1} {1,-1}" << std::endl;
 }
 
-// --- Edge Cases ---
+// -------------------------------------------------------------------
+// Test 6: Edge Cases (Empty Array)
+// -------------------------------------------------------------------
 void test_empty_array() {
     print_divider("Testing empty array");
     int* empty = NULL;
-    iter(empty, 0, print_element<int>);
+    ::iter(empty, 0, print_element<int>);
     std::cout << "(No output expected)" << std::endl;
 }
 
-// --- Main Test Harness ---
 int main() {
     test_int_array();
     test_float_array();
