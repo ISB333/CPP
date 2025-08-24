@@ -11,144 +11,69 @@
 /* ************************************************************************** */
 
 #include "iter.hpp"
+#include <iostream>
 
-void doubleIntFunc(int& x) { 
-    x *= 2; 
-}
-
-void nullifyIntPointer(int*& ptr) {
-    delete ptr;
-    ptr = NULL;
-}
-
-void print_divider(const char* message) {
-    std::cout << "\n\033[1;35m== " << message << " ==\033[0m\n";
+void doubleInt(int& n) {
+    n *= 2;
 }
 
 template <typename T>
-void print_element(T& element) {
-    std::cout << element << " ";
-}
-
-// -------------------------------------------------------------------
-// Test 1: Primitive Type (int)
-// -------------------------------------------------------------------
-void test_int_array() {
-    print_divider("Testing int array");
-    int nums[] = {1, 2, 3, 4, 5};
-    const size_t len = sizeof(nums)/sizeof(int);
-    
-    ::iter(nums, len, doubleIntFunc);
-    
-    std::cout << "Results: ";
-    ::iter(nums, len, print_element<int>);
-    std::cout << "Expected: 2 4 6 8 10" << std::endl;
-}
-
-
-// -------------------------------------------------------------------
-// Test 2: Floating Point Type (float)
-// -------------------------------------------------------------------
-struct FloatModifier {
-    void operator()(float& f) const { f += 0.5f; }
-};
-
-void test_float_array() {
-    print_divider("Testing float array");
-    float values[] = {1.1f, 2.2f, 3.3f};
-    size_t len = sizeof(values)/sizeof(float);
-    
-    FloatModifier modifier;
-    ::iter(values, len, modifier);
-    
-    std::cout << "Results: ";
-    ::iter(values, len, print_element<float>);
-    std::cout << "Expected: 1.6 2.7 3.8" << std::endl;
-}
-
-// -------------------------------------------------------------------
-// Test 3: Const Array
-// -------------------------------------------------------------------
-void print_const(const int& x) {
+void print(const T& x) {
     std::cout << x << " ";
 }
 
-void test_const_array() {
-    print_divider("Testing const array");
-    const int const_nums[] = {10, 20, 30};
-    size_t len = sizeof(const_nums)/sizeof(int);
-    
-    ::iter(const_nums, len, print_const);
-    std::cout << "Expected: 10 20 30" << std::endl;
-}
-
-// -------------------------------------------------------------------
-// Test 4: Pointer Array
-// -------------------------------------------------------------------
-void nullify(void*& ptr) {
-    ptr = NULL;
-}
-
-void test_pointer_array() {
-    print_divider("Testing pointer array");
-    int* ptrs[3] = {new int(1), new int(2), new int(3)};
-    const size_t len = 3;
-    
-    ::iter(ptrs, len, nullifyIntPointer);
-    
-    std::cout << "Pointer values: ";
-    for (size_t i = 0; i < len; ++i)
-        std::cout << (ptrs[i] ? "VALID" : "NULL") << " ";
-    std::cout << "\nExpected: NULL NULL NULL" << std::endl;
-}
-
-// -------------------------------------------------------------------
-// Test 5: Struct Array
-// -------------------------------------------------------------------
-struct TestStruct {
-    int x;
-    int y;
-    TestStruct(int a = 0, int b = 0) : x(a), y(b) {}
-};
-
-std::ostream& operator<<(std::ostream& os, const TestStruct& s) {
-    return os << "{" << s.x << "," << s.y << "}";
-}
-
-void modify_struct(TestStruct& s) {
-    s.x += 1;
-    s.y -= 1;
-}
-
-void test_struct_array() {
-    print_divider("Testing struct array");
-    TestStruct structs[3];
-    size_t len = 3;
-    
-    ::iter(structs, len, modify_struct);
-    
-    std::cout << "Results: ";
-    ::iter(structs, len, print_element<TestStruct>);
-    std::cout << "Expected: {1,-1} {1,-1} {1,-1}" << std::endl;
-}
-
-// -------------------------------------------------------------------
-// Test 6: Edge Cases (Empty Array)
-// -------------------------------------------------------------------
-void test_empty_array() {
-    print_divider("Testing empty array");
-    int* empty = NULL;
-    ::iter(empty, 0, print_element<int>);
-    std::cout << "(No output expected)" << std::endl;
+void addToFloat(float& f) {
+    f += 0.5f;
 }
 
 int main() {
-    test_int_array();
-    test_float_array();
-    test_const_array();
-    test_pointer_array();
-    test_struct_array();
-    test_empty_array();
+    std::cout << "=== Testing int array ===" << std::endl;
+    int intArray[] = {1, 2, 3, 4, 5};
+    
+    std::cout << "Original: ";
+    iter(intArray, 5, print<int>);
+    std::cout << std::endl;
+    iter(intArray, 5, doubleInt);
+    std::cout << "After doubling: ";
+    iter(intArray, 5, print<int>);
+    std::cout << std::endl;
 
-    return (0);
+    std::cout << "\n=== Testing float array ===" << std::endl;
+    float floatArray[] = {1.1f, 2.2f, 3.3f};
+    std::cout << "Original: ";
+    iter(floatArray, 3, print<float>);
+    std::cout << std::endl;
+    iter(floatArray, 3, addToFloat);
+    std::cout << "After adding 0.5: ";
+    iter(floatArray, 3, print<float>);
+    std::cout << std::endl;
+    
+    std::cout << "\n=== Testing const array ===" << std::endl;
+    const char* words[] = {"Hello", "42", "School"};
+    std::cout << "String array: ";
+    iter(words, 3, print<const char*>);
+    std::cout << std::endl;
+
+    return 0;
 }
+
+// class Awesome {
+//     public:
+//         Awesome( void ) : _n( 42 ) { return; }
+//         int get( void ) const { return this->_n; }
+//     private:
+//         int _n;
+// };
+
+// std::ostream & operator<<( std::ostream & o, Awesome const & rhs ) { o << rhs.get(); return o; }
+
+// template< typename T >
+// void print( T const & x ) { std::cout << x << std::endl; return; }
+
+// int main() {
+//     int tab[] = { 0, 1, 2, 3, 4 }; 
+//     Awesome tab2[5];
+//     iter( tab, 5, print );
+//     iter( tab2, 5, print );
+//     return 0;
+// }
