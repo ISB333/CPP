@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 07:48:31 by adesille          #+#    #+#             */
-/*   Updated: 2025/03/28 10:20:27 by adesille         ###   ########.fr       */
+/*   Updated: 2025/08/24 00:00:00 by adesille         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -15,31 +15,35 @@
 # include <cstring>
 # include <cstddef>
 # include <cstdlib>
+# define BLACK		"\033[30m"
+# define RED		"\033[31m"
+# define GREEN		"\033[32m"
+# define YELLOW		"\033[33m"
+# define BLUE		"\033[34m"
+# define MAGENTA	"\033[35m"
+# define CYAN		"\033[36m"
+# define WHITE		"\033[37m"
+# define HYEL 		"\e[0;93m"
+# define RESET		"\033[0m"
 
 template<typename T>
 class Array {
-    T*   _elements;
-    size_t _size;
-public:
-    Array(unsigned n = 0) : _elements(new T[n]()), _size(n) {}
-    Array(const Array& other) : _elements(new T[other._size]), _size(other._size) {
-        std::copy(other._elements, other._elements + _size, _elements);
-    }
-    Array& operator=(Array other) {
-        swap(*this, other);
-        return *this;
-    }
-    ~Array() { delete[] _elements; }
+    private:
+        T*      _elements;
+        size_t  _size;
     
-    T& operator[](size_t index) {
-        if (index >= _size) throw std::exception();
-        return _elements[index];
-    }
-    const T& operator[](size_t index) const {
-        if (index >= _size)
-            throw std::out_of_range("Index out of bounds");
-        return _elements[index];
-    }
-    
-    size_t size() const { return _size; }
+    public:
+        Array(unsigned n = 0);
+        Array(const Array& other);
+        Array& operator=(Array other);
+        ~Array();
+        
+        T& operator[](size_t index);
+        const T& operator[](size_t index) const;
+        size_t size() const;
+        
+        template<typename U>
+        friend void swap(Array<U>& first, Array<U>& second);
 };
+
+# include "Array.tpp"

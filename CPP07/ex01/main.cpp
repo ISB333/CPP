@@ -19,7 +19,7 @@ void doubleInt(int& n) {
 
 template <typename T>
 void print(const T& x) {
-    std::cout << x << " ";
+    std::cout << x << " " << std::endl;
 }
 
 void addToFloat(float& f) {
@@ -27,30 +27,30 @@ void addToFloat(float& f) {
 }
 
 int main() {
-    std::cout << "=== Testing int array ===" << std::endl;
+    std::cout << BLUE "=== Testing int array ===" RESET << std::endl;
     int intArray[] = {1, 2, 3, 4, 5};
     
-    std::cout << "Original: ";
+    std::cout << "Original: " << std::endl;
     iter(intArray, 5, print<int>);
     std::cout << std::endl;
     iter(intArray, 5, doubleInt);
-    std::cout << "After doubling: ";
+    std::cout << "After doubling: " << std::endl;
     iter(intArray, 5, print<int>);
     std::cout << std::endl;
 
-    std::cout << "\n=== Testing float array ===" << std::endl;
+    std::cout << MAGENTA "\n=== Testing float array ===" RESET << std::endl;
     float floatArray[] = {1.1f, 2.2f, 3.3f};
-    std::cout << "Original: ";
+    std::cout << "Original: " << std::endl;
     iter(floatArray, 3, print<float>);
     std::cout << std::endl;
     iter(floatArray, 3, addToFloat);
-    std::cout << "After adding 0.5: ";
+    std::cout << "After adding 0.5: " << std::endl;
     iter(floatArray, 3, print<float>);
     std::cout << std::endl;
     
-    std::cout << "\n=== Testing const array ===" << std::endl;
+    std::cout << YELLOW "\n=== Testing const array ===" RESET << std::endl;
     const char* words[] = {"Hello", "42", "School"};
-    std::cout << "String array: ";
+    std::cout << "String array: " << std::endl;
     iter(words, 3, print<const char*>);
     std::cout << std::endl;
 
