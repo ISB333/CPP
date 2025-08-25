@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   Array.hpp                                          :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 07:48:31 by adesille          #+#    #+#             */
-/*   Updated: 2025/08/24 00:00:00 by adesille         ###   ########.fr       */
+/*   Updated: 2025/08/25 12:31:12 by adesille         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #pragma once
 # include <iostream>
@@ -42,8 +42,7 @@ class Array {
         const T& operator[](size_t index) const;
         size_t size() const;
         
-        template<typename U>
-        friend void swap(Array<U>& first, Array<U>& second);
+        void swap(Array& other);
 };
 
 # include "Array.tpp"

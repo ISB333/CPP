@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:13:05 by adesille          #+#    #+#             */
-/*   Updated: 2025/03/29 11:01:02 by adesille         ###   ########.fr       */
+/*   Updated: 2025/08/25 09:40:18 by adesille         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "Span.hpp"
 
@@ -30,7 +30,7 @@ int main()
 	try {
 		{
 			Span sp = Span(5);
-			std::cout << "=== TEST 1 ===" << std::endl;
+			std::cout << YELLOW "=== TEST 1 ===" RESET << std::endl;
 			sp.addNumber(6);
 			sp.addNumber(3);
 			sp.addNumber(17);
@@ -41,7 +41,7 @@ int main()
 		}
 		{
 			Span sp = Span(1000);
-			std::cout << "=== TEST 2 ===" << std::endl;
+			std::cout << YELLOW "=== TEST 2 ===" RESET << std::endl;
 			std::vector<int> big = generateUniqueRand(1000);
 			sp.addNumbers(big.begin(), big.end());
 			std::cout << sp.shortestSpan() << std::endl;
@@ -49,7 +49,7 @@ int main()
 		}
 		{
 			Span sp = Span(100);
-			std::cout << "=== TEST 3 (out of bounds) ===" << std::endl;
+			std::cout << YELLOW "=== TEST 3 (out of bounds) ===" RESET << std::endl;
 			std::vector<int> big = generateUniqueRand(1000);
 			sp.addNumbers(big.begin(), big.end());
 			std::cout << sp.shortestSpan() << std::endl;

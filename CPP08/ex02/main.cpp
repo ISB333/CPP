@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:13:05 by adesille          #+#    #+#             */
-/*   Updated: 2025/03/29 12:11:02 by adesille         ###   ########.fr       */
+/*   Updated: 2025/08/25 11:29:19 by adesille         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "MutantStack.hpp"
 #include <list>
@@ -16,7 +16,7 @@
 int main()
 {
 	{
-		std::cout << "=== Testing with MutantStack ===" << std::endl;
+		std::cout << YELLOW "=== Testing with MutantStack ===" RESET << std::endl;
 		MutantStack<int> mstack;
 		mstack.push(5);
 		mstack.push(17);
@@ -31,15 +31,14 @@ int main()
 		MutantStack<int>::iterator ite = mstack.end();
 		++it;
 		--it;
-		while (it != ite)
-		{
+		while (it != ite) {
 			std::cout << *it << std::endl;
 			++it;
 		}
 		std::stack<int> s(mstack);
 	}
 	{
-		std::cout << "=== Testing with std::list ===" << std::endl;
+		std::cout << YELLOW "=== Testing with std::list ===" RESET << std::endl;
 		std::list<int> mlist;
 		mlist.push_back(5);
 		mlist.push_back(17);
@@ -54,8 +53,7 @@ int main()
 		std::list<int>::iterator ite = mlist.end();
 		++it;
 		--it;
-		while (it != ite)
-		{
+		while (it != ite) {
 			std::cout << *it << std::endl;
 			++it;
 		}

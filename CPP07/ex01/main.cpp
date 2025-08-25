@@ -6,74 +6,56 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:13:05 by adesille          #+#    #+#             */
-/*   Updated: 2025/06/30 14:26:51 by adesille         ###   ########.fr       */
+/*   Updated: 2025/08/25 12:30:29 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "iter.hpp"
-#include <iostream>
-
-void doubleInt(int& n) {
-    n *= 2;
-}
 
 template <typename T>
 void print(const T& x) {
     std::cout << x << " " << std::endl;
 }
 
-void addToFloat(float& f) {
-    f += 0.5f;
+void printString(const std::string& str) {
+    std::cout << "\"" << str << "\" " << std::endl;
 }
 
 int main() {
     std::cout << BLUE "=== Testing int array ===" RESET << std::endl;
     int intArray[] = {1, 2, 3, 4, 5};
-    
-    std::cout << "Original: " << std::endl;
-    iter(intArray, 5, print<int>);
-    std::cout << std::endl;
-    iter(intArray, 5, doubleInt);
-    std::cout << "After doubling: " << std::endl;
     iter(intArray, 5, print<int>);
     std::cout << std::endl;
 
-    std::cout << MAGENTA "\n=== Testing float array ===" RESET << std::endl;
-    float floatArray[] = {1.1f, 2.2f, 3.3f};
-    std::cout << "Original: " << std::endl;
-    iter(floatArray, 3, print<float>);
+    std::cout << MAGENTA "=== Testing double array ===" RESET << std::endl;
+    double doubleArray[] = {1.1, 2.2, 3.3, 4.4};
+    iter(doubleArray, 4, print<double>);
     std::cout << std::endl;
-    iter(floatArray, 3, addToFloat);
-    std::cout << "After adding 0.5: " << std::endl;
-    iter(floatArray, 3, print<float>);
+
+    std::cout << YELLOW "=== Testing char array ===" RESET << std::endl;
+    char charArray[] = {'a', 'b', 'c', 'd', 'e'};
+    iter(charArray, 5, print<char>);
     std::cout << std::endl;
-    
-    std::cout << YELLOW "\n=== Testing const array ===" RESET << std::endl;
-    const char* words[] = {"Hello", "42", "School"};
-    std::cout << "String array: " << std::endl;
-    iter(words, 3, print<const char*>);
+
+    std::cout << GREEN "=== Testing string array ===" RESET << std::endl;
+    std::string stringArray[] = {"Hello", "World", "42", "School"};
+    iter(stringArray, 4, printString);
+    std::cout << std::endl;
+
+    std::cout << CYAN "=== Testing bool array ===" RESET << std::endl;
+    bool boolArray[] = {true, false, true, false};
+    iter(boolArray, 4, print<bool>);
+    std::cout << std::endl;
+
+    std::cout << RED "=== Testing long array ===" RESET << std::endl;
+    long longArray[] = {100L, 200L, 300L};
+    iter(longArray, 3, print<long>);
+    std::cout << std::endl;
+
+    std::cout << WHITE "=== Testing const char* array ===" RESET << std::endl;
+    const char* cStringArray[] = {"First", "Second", "Third"};
+    iter(cStringArray, 3, print<const char*>);
     std::cout << std::endl;
 
     return 0;
 }
-
-// class Awesome {
-//     public:
-//         Awesome( void ) : _n( 42 ) { return; }
-//         int get( void ) const { return this->_n; }
-//     private:
-//         int _n;
-// };
-
-// std::ostream & operator<<( std::ostream & o, Awesome const & rhs ) { o << rhs.get(); return o; }
-
-// template< typename T >
-// void print( T const & x ) { std::cout << x << std::endl; return; }
-
-// int main() {
-//     int tab[] = { 0, 1, 2, 3, 4 }; 
-//     Awesome tab2[5];
-//     iter( tab, 5, print );
-//     iter( tab2, 5, print );
-//     return 0;
-// }
