@@ -6,31 +6,20 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:13:05 by adesille          #+#    #+#             */
-/*   Updated: 2025/08/25 09:36:21 by adesille         ###   ########.fr       */
+/*   Updated: 2025/08/26 10:05:43 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "easyfind.hpp"
-#include <iostream>
-#include <vector>
-#include <list>
-#include <deque>
-#include <algorithm>
-#include <stdexcept>
-#include "easyfind.hpp"
-#define GREEN "\033[32m"
-#define RED "\033[31m"
-#define YELLOW "\033[33m"
-#define RESET "\033[0m"
 
 void printer(const std::string& title) {
     std::cout << "\n" << YELLOW << "=== " << title << " ===" << RESET << "\n";
 }
 
-template <typename Container>
-void test_find(Container& c, int value, bool should_find) {
+template <typename T>
+void test_find(T& c, int value, bool should_find) {
     try {
-        typename Container::iterator it = easyfind(c, value);
+        typename T::iterator it = easyfind(c, value);
         
         if (!should_find) {
             std::cout << RED << "FAIL" << RESET << ": Found unexpected value " << *it << "\n";

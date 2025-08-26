@@ -6,7 +6,7 @@
 #    By: adesille <adesille@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 11:33:14 by adesille          #+#    #+#              #
-#    Updated: 2025/08/25 09:38:01 by adesille         ###   ########.fr        #
+#    Updated: 2025/08/26 10:06:53 by adesille         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,4 +55,4 @@ re : fclean all
 x : all 
 	@./$(NAME)
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re x

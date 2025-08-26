@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   easyfind.hpp                                       :+:      :+:    :+:   */
@@ -6,17 +6,25 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 07:48:31 by adesille          #+#    #+#             */
-/*   Updated: 2025/03/28 11:47:32 by adesille         ###   ########.fr       */
+/*   Updated: 2025/08/25 13:44:04 by adesille         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #pragma once
 # include <iostream>
+# include <ostream>
+# include <vector>
 # include <cstring>
 # include <cstddef>
 # include <cstdlib>
 # include <algorithm>
-# include <vector>
+# include <list>
+# include <deque>
+# include <stdexcept>
+# define GREEN "\033[32m"
+# define RED "\033[31m"
+# define YELLOW "\033[33m"
+# define RESET "\033[0m"
 
 class NotFoundException : public std::exception {
     public: const char* what() const throw() {

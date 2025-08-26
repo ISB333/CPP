@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:13:05 by adesille          #+#    #+#             */
-/*   Updated: 2025/08/25 09:40:18 by adesille         ###   ########.fr       */
+/*   Updated: 2025/08/26 10:16:47 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int main()
 			std::cout << sp.longestSpan() << std::endl;
 		}
 		{
-			Span sp = Span(1000);
+			Span sp = Span(10000);
 			std::cout << YELLOW "=== TEST 2 ===" RESET << std::endl;
-			std::vector<int> big = generateUniqueRand(1000);
+			std::vector<int> big = generateUniqueRand(10000);
 			sp.addNumbers(big.begin(), big.end());
 			std::cout << sp.shortestSpan() << std::endl;
 			std::cout << sp.longestSpan() << std::endl;
