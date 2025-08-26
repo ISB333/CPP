@@ -21,8 +21,7 @@ void	print(std::string str, double n) {
 }
 
 int main(int argc, char *argv[]) {
-	if (argc == 2)
-	{
+	if (argc == 2) {
 		try {
 			BitcoinExchange btc(argv[1]);
 			

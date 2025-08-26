@@ -39,12 +39,12 @@ class BitcoinExchange {
 		BitcoinExchange& operator=(const BitcoinExchange &other);
 		~BitcoinExchange();
 
-		DataMap readCSV(const std::string& filename, char separator);
-		void initializeSortedDates();
-		size_t findClosestDate(int targetDate);
-		void findClosestCorrespondingPrice(DataMap data, std::map<size_t, std::string> input_row);
-		void findCorrespondingPrice(DataMap data, std::map<size_t, std::string> input_row);
-		void analyzeAndProcessData();
+		DataMap	readCSV(const std::string& filename, char separator);
+		void	initializeSortedDates();
+		size_t	findClosestDate(int targetDate);
+		void	findClosestCorrespondingPrice(DataMap data, std::map<size_t, std::string> input_row);
+		void	findCorrespondingPrice(DataMap data, std::map<size_t, std::string> input_row);
+		void	analyzeAndProcessData();
 };
 
 int		dateToInt(const std::string& dateStr);
