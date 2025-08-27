@@ -6,12 +6,13 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 11:38:06 by adesille          #+#    #+#             */
-/*   Updated: 2025/08/27 11:53:29 by adesille         ###   ########.fr       */
+/*   Updated: 2025/08/27 15:51:27 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 #include <cstddef>
+#include <pthread.h>
 #include <vector>
 
 PMergeMe::PMergeMe() {}
@@ -22,13 +23,32 @@ PMergeMe::PMergeMe(char **argv) : _vec(init(argv)), _deq(_vec.begin(), _vec.end(
 PMergeMe::PMergeMe(const PMergeMe &other) {	*this = other; }
 
 PMergeMe& PMergeMe::operator=(const PMergeMe &other) {
-	if (this != &other) {
-		// Copy the shit here 
-	}
+	if (this != &other) {}
 	return *this;
 }
 
 PMergeMe::~PMergeMe() {}
+
+// void	printVec(vector _vecWinners, vector _vecLosers)  {
+// 	std::cout << "Winners Vectors: ";
+// 	for (size_t i = 0; i < _vecWinners.size(); ++i)
+// 		std::cout << _vecWinners[i] << " ";
+// 	std::cout << std::endl;
+// 	std::cout << "Losers Vectors: ";
+// 	for (size_t i = 0; i < _vecLosers.size(); ++i)
+// 		std::cout << _vecLosers[i] << " ";
+// 	std::cout << std::endl;
+// }
+// template<typename Seq>
+// void	printDoubleVec(Seq& Losers)  {
+// 	std::cout << "\nAll Losers" << std::endl;
+// 	for (unsigned long i = 0; i < Losers.size(); ++i) {
+// 		for (unsigned long j = 0; j < Losers[i].size(); ++j) {
+// 			std::cout << Losers[i][j] << " ";
+// 		}
+// 		std::cout << std::endl;
+// 	}
+// }
 
 bool PMergeMe::isPositiveInteger(const std::string &s) const {
 	for (size_t i = 0; i < s.length(); ++i) {
@@ -64,27 +84,6 @@ vector PMergeMe::init(char **argv) {
 	return result;
 }
 
-// void	printVec(vector _vecWinners, vector _vecLosers)  {
-// 	std::cout << "Winners Vectors: ";
-// 	for (size_t i = 0; i < _vecWinners.size(); ++i)
-// 		std::cout << _vecWinners[i] << " ";
-// 	std::cout << std::endl;
-// 	std::cout << "Losers Vectors: ";
-// 	for (size_t i = 0; i < _vecLosers.size(); ++i)
-// 		std::cout << _vecLosers[i] << " ";
-// 	std::cout << std::endl;
-// }
-// template<typename Seq>
-// void	printDoubleVec(Seq& Losers)  {
-// 	std::cout << "\nAll Losers" << std::endl;
-// 	for (unsigned long i = 0; i < Losers.size(); ++i) {
-// 		for (unsigned long j = 0; j < Losers[i].size(); ++j) {
-// 			std::cout << Losers[i][j] << " ";
-// 		}
-// 		std::cout << std::endl;
-// 	}
-// }
-
 void	PMergeMe::printData(std::string s) const {
 	std::ostringstream oss;
 	s += ": ";
@@ -98,9 +97,8 @@ void	PMergeMe::printData(std::string s) const {
 	std::cout << s << std::endl;
 }
 
-
-template<typename Seq>
-void	pairUp(const Seq& data, Seq& winners, Seq& losers) {
+template<typename Container>
+void	pairUp(const Container& data, Container& winners, Container& losers) {
 	winners.clear();
 	losers.clear();
 
@@ -118,6 +116,17 @@ void	pairUp(const Seq& data, Seq& winners, Seq& losers) {
 		winners.push_back(data.back());
 }
 
+
+/*
+	[0, 1]
+	step 1: 1 + 2*0 = 1
+
+	[0, 1, 1]
+	step 2: 1 + 2*1 = 3
+
+	[0, 1, 1, 3]
+	step 2: 3 + 2*1 = 5
+*/
 std::vector<size_t> generateJacosthalSequence(size_t length) {
 	std::vector<size_t> jacobsthal;
 	jacobsthal.push_back(0);
@@ -143,94 +152,43 @@ std::vector<size_t> getInsertionOrder(size_t n, const std::vector<size_t>& jac) 
 		size_t start = jac[i - 1];
 		size_t end = jac[i];
 		for (size_t j = end; j > start; --j) {
-			size_t idx = j - 1;
-			if (idx < n && !used[idx]) {
-				order.push_back(idx);
-				used[idx] = true;
+			size_t k = j - 1;
+			if (k < n && !used[k]) {
+				order.push_back(k);
+				used[k] = true;
 			}
 		}
 		i++;
 	}
-	for (size_t j = 0; j < n; ++j) {
-		if (!used[j]) order.push_back(j);
-	}
+	for (size_t j = 0; j < n; ++j)
+		if (!used[j])
+			order.push_back(j);
 	return order;
 };
 
-void	vectorInsertion(std::vector<int>& winners, std::vector<std::vector<int> >& losers) {
+template <typename Container, typename DoubleContainer>
+Container algorithm(Container& data, Container& winners, DoubleContainer& losers) {
+	if(data.size() == 1)
+		return data;
+	while (data.size() > 1) {
+		Container currentLosers;
+		pairUp(data, winners, currentLosers);
+		losers.push_back(currentLosers);
+		data = winners;
+	}
 	while (!losers.empty()) {
-		std::vector<int>& current_losers = losers.back();
+		Container current_losers = losers.back();
 		size_t n = current_losers.size();
 		std::vector<size_t> jacobsthal = generateJacosthalSequence(n);
 		std::vector<size_t> order = getInsertionOrder(n, jacobsthal);
 		for (size_t i = 0; i < order.size(); ++i) {
 			size_t idx = order[i];
-			std::vector<int>::iterator it = std::upper_bound(winners.begin(), winners.end(), current_losers[idx]);
+			typename Container::iterator it = std::upper_bound(winners.begin(), winners.end(), current_losers[idx]);
 			winners.insert(it, current_losers[idx]);
 		}
 		losers.pop_back();
 	}
-}
-
-void	dequeInsertion(std::deque<int>& winners, std::deque<std::deque<int> >& losers) {
-	while (!losers.empty()) {
-		std::deque<int>& current_losers = losers.back();
-		size_t n = current_losers.size();
-		std::vector<size_t> jacobsthal = generateJacosthalSequence(n);
-		std::vector<size_t> order = getInsertionOrder(n, jacobsthal);
-		for (size_t i = 0; i < order.size(); ++i) {
-			size_t idx = order[i];
-			std::deque<int>::iterator it = std::upper_bound(winners.begin(), winners.end(), current_losers[idx]);
-			winners.insert(it, current_losers[idx]);
-		}
-		losers.pop_back();
-	}
-}
-
-void	PMergeMe::fordJohnsonSortVec() {
-	// size_t length = _vec.size();
-	while (_vec.size() > 1) {
-		vector currentLosers;
-		pairUp(_vec, _vecWinners, currentLosers);
-		_vecLosers.push_back(currentLosers);
-		_vec = _vecWinners;
-	}
-	// generateJacosthalSequence(length);
-	vectorInsertion(_vecWinners, _vecLosers);
-	_vec = _vecWinners;
-
-	// while (_vecLosers.size() > 0) {
-	// 	int i = _vecLosers.size() - 1;
-	// 	while (_vecLosers[i].size()) {
-	// 		std::vector<int>::iterator it = std::upper_bound(_vec.begin(), _vec.end(), _vecLosers[i][0]);
-	// 		_vec.insert(it, _vecLosers[i][0]);
-	// 		_vecLosers[i].erase(_vecLosers[i].begin());
-	// 	}
-	// 	_vecLosers.pop_back();
-	// }
-}
-
-void	PMergeMe::fordJohnsonSortDeq() {
-	// size_t length = _deq.size();
-	while (_deq.size() > 1) {
-		deque currentLosers;
-		pairUp(_deq, _deqWinners, currentLosers);
-		_deqLosers.push_back(currentLosers);
-		_deq = _deqWinners;
-	}
-	// generateJacosthalSequence(length);
-	dequeInsertion(_deqWinners, _deqLosers);
-	_deq = _deqWinners;
-
-	// while (_deqLosers.size() > 0) {
-	// 	int i = _deqLosers.size() - 1;
-	// 	while (_deqLosers[i].size()) {
-	// 		std::deque<int>::iterator it = std::upper_bound(_deq.begin(), _deq.end(), _deqLosers[i][0]);
-	// 		_deq.insert(it, _deqLosers[i][0]);
-	// 		_deqLosers[i].erase(_deqLosers[i].begin());
-	// 	}
-	// 	_deqLosers.pop_back();
-	// }
+	return winners;
 }
 
 void PMergeMe::fordJohnsonSort() {
@@ -238,9 +196,9 @@ void PMergeMe::fordJohnsonSort() {
 
 	struct timeval t0, t1, t2;
 	::gettimeofday(&t0, NULL);
-	fordJohnsonSortVec();
+	_vec = algorithm(_vec, _vecWinners, _vecLosers);
 	::gettimeofday(&t1, NULL);
-	fordJohnsonSortDeq();
+	_deq = algorithm(_deq, _deqWinners, _deqLosers);
 	::gettimeofday(&t2, NULL);
 
 	printData("After");
@@ -249,5 +207,5 @@ void PMergeMe::fordJohnsonSort() {
 	long long deq_usec = (t2.tv_sec - t1.tv_sec) * 1000000LL + (t2.tv_usec - t1.tv_usec);
 
 	std::cout << "Vector time: " << vec_usec << " us\n"
-		<< "Deque time:  " << deq_usec << " us\n";
+		<< "Deque time:  " << deq_usec << " us\n" << std::endl;
 }
