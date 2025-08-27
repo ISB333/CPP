@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PMergeMe.hpp                                       :+:      :+:    :+:   */
+/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 09:22:12 by adesille          #+#    #+#             */
-/*   Updated: 2025/04/19 13:19:13 by adesille         ###   ########.fr       */
+/*   Updated: 2025/08/27 11:06:24 by adesille         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #pragma once
 # include <stack>
@@ -36,10 +36,10 @@ typedef std::deque<int>					deque;
 
 class PMergeMe {
 	private:
-		vector	_vec, _vecWinners;
-		doubleVector _vecLosers;
-		deque	_deq, _deqWinners;
-		doubleDeque _deqLosers;
+		vector				_vec, _vecWinners;
+		doubleVector		_vecLosers;
+		deque				_deq, _deqWinners;
+		doubleDeque			_deqLosers;
 
 		bool				isPositiveInteger(const std::string &s) const;
 		bool				isNotOverflow(const char *s) const;
