@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
 			return 0;
 		}
 		catch (const std::exception& error) {
-			printError(error.what());
+			return printError(error.what()), 1;
 		}
 	}
 	else if (argc > 2)

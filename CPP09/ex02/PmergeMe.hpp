@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 09:22:12 by adesille          #+#    #+#             */
-/*   Updated: 2025/08/27 11:06:24 by adesille         ###   ########.fr       */
+/*   Updated: 2025/08/29 09:57:10 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,16 @@
 # include <cerrno>
 # include <ctime>
 # include <sys/time.h>
+# define BLACK		"\033[30m"
+# define RED		"\033[31m"
+# define GREEN		"\033[32m"
+# define YELLOW		"\033[33m"
+# define BLUE		"\033[34m"
+# define MAGENTA	"\033[35m"
+# define CYAN		"\033[36m"
+# define WHITE		"\033[37m"
+# define HYEL 		"\e[0;93m"
+# define RESET		"\033[0m"
 
 typedef std::vector<std::vector<int> >	doubleVector;
 typedef std::vector<int>				vector;

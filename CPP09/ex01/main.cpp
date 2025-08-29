@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:13:05 by adesille          #+#    #+#             */
-/*   Updated: 2025/08/26 14:09:01 by adesille         ###   ########.fr       */
+/*   Updated: 2025/08/29 09:53:37 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	checkArgsValidity(std::string str) {
             operatorsCount++;
     }
     
-	// print(digitsCount), print(operatorsCount);
     if (digitsCount != operatorsCount + 1) 
         throw std::invalid_argument("Invalid RPN expression: incorrect operator/operand ratio");
     if (str.find(" 0 /") != std::string::npos)
@@ -47,8 +46,7 @@ int main (int argc, char *argv[]) {
 		try {
 			checkArgsValidity(argv[1]);
 			RPN rpn;
-			rpn.parseFormula(argv[1]);
-			print(rpn.processFormula());
+			print(rpn.processFormula(argv[1]));
 			return 0;
 		} catch (const std::exception& error) {
 			return printError(error.what()), 1;

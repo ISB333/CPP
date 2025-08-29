@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 09:22:12 by adesille          #+#    #+#             */
-/*   Updated: 2025/08/26 14:16:51 by adesille         ###   ########.fr       */
+/*   Updated: 2025/08/29 09:54:17 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,13 @@
 # include <list>
 
 class RPN {
-	private:
-		std::list<int>	_nbrs;
-		std::list<char>	_operators;
-		std::string		_formula;
-
 	public:
 		RPN();
 		RPN(const RPN &other);
 		RPN& operator=(const RPN &other);
 		~RPN();
 
-		void	parseFormula(std::string);
-		int		processFormula();
+		int		processFormula(std::string formula);
 };
 
 void	printError(std::string str);

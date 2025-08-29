@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 09:29:47 by adesille          #+#    #+#             */
-/*   Updated: 2025/08/26 13:41:31 by adesille         ###   ########.fr       */
+/*   Updated: 2025/08/29 09:16:16 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,8 @@ bool	checkValueValidity(std::string original_value) {
 		return printError("not a positive number"), false;
 	else if (overflowCheck(original_value))
 		return printError("too large number"), false;
+	else if (std::atof(original_value.c_str()) > 1000)
+		return printError("value exceeds 1000"), false;
 	return true;
 }
 
